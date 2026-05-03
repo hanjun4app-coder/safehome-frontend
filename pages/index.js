@@ -5,10 +5,11 @@ export default function LandingPage() {
   return (
     <div style={{ background: 'linear-gradient(135deg, #F7F9FB 0%, #EEF4FA 100%)' }} className="min-h-screen">
       {/* Hero Section - Premium Design */}
-      <section className="container mx-auto px-4 py-20 md:py-32 text-center">
-        {/* Emotional Trigger */}
-        <p className="text-text-light mb-8 text-lg leading-relaxed max-w-2xl mx-auto">
-          Most families only realize something is wrong after it's too late.
+      <section className="container mx-auto px-4 py-20 md:py-32 text-center" style={{ position: 'relative', zIndex: 2 }}>
+        {/* Mono Label */}
+        <p className="label-mono mb-8 justify-center">
+          <span className="label-dot animate-pulse"></span>
+          CARING FOR ELDERS, RESPECTING PRIVACY
         </p>
 
         {/* Trust Badge */}
@@ -18,10 +19,10 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Main Headline */}
-        <h1 className="text-5xl md:text-6xl font-bold text-text mb-8 leading-tight max-w-4xl mx-auto">
+        {/* Main Headline with Serif */}
+        <h1 className="text-5xl md:text-6xl font-bold text-text mb-8 leading-tight max-w-4xl mx-auto" style={{ fontFamily: 'var(--font-serif)' }}>
           Keep your loved one safe at home
-          <span className="text-primary"> — without cameras</span>
+          <span className="text-primary italic" style={{ fontStyle: 'italic' }}> — without cameras</span>
         </h1>
 
         {/* Subheadline */}
@@ -63,39 +64,44 @@ export default function LandingPage() {
         </p>
       </section>
 
-      {/* Core Benefits - Card Design */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <h2 className="text-3xl md:text-4xl font-bold text-text mb-16 text-center">Why families choose us</h2>
+      {/* Core Benefits - Enhanced Card Design */}
+      <section className="container mx-auto px-4 py-16 md:py-24" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="text-center mb-16">
+          <p className="label-mono justify-center mb-6">
+            CORE FEATURES
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-text" style={{ fontFamily: 'var(--font-serif)' }}>Why families choose us</h2>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Benefit Card 1 */}
-          <div className="card card-lg">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'rgba(74, 144, 226, 0.1)' }}>
+          <div className="card card-lg" style={{ background: 'white', border: '1px solid var(--color-border)', transition: 'all 0.3s ease' }}>
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'var(--color-primary-pale)' }}>
               <span className="text-3xl">🚫</span>
             </div>
-            <h3 className="text-xl font-bold text-text mb-4">No cameras</h3>
+            <h3 className="text-xl font-bold text-text mb-4" style={{ fontFamily: 'var(--font-serif)' }}>No cameras</h3>
             <p className="text-text-light leading-relaxed">
               We monitor only activity patterns, not people. Your loved one's dignity and privacy are fully protected.
             </p>
           </div>
 
           {/* Benefit Card 2 */}
-          <div className="card card-lg">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'rgba(111, 207, 151, 0.1)' }}>
+          <div className="card card-lg" style={{ background: 'white', border: '1px solid var(--color-border)', transition: 'all 0.3s ease' }}>
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'var(--color-accent-pale)' }}>
               <span className="text-3xl">📱</span>
             </div>
-            <h3 className="text-xl font-bold text-text mb-4">No wearable devices</h3>
+            <h3 className="text-xl font-bold text-text mb-4" style={{ fontFamily: 'var(--font-serif)' }}>No wearables</h3>
             <p className="text-text-light leading-relaxed">
               Nothing to wear, charge, or lose. The system works silently in the background, zero burden.
             </p>
           </div>
 
           {/* Benefit Card 3 */}
-          <div className="card card-lg">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'rgba(74, 144, 226, 0.1)' }}>
+          <div className="card card-lg" style={{ background: 'white', border: '1px solid var(--color-border)', transition: 'all 0.3s ease' }}>
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'var(--color-primary-pale)' }}>
               <span className="text-3xl">🔐</span>
             </div>
-            <h3 className="text-xl font-bold text-text mb-4">Privacy-first</h3>
+            <h3 className="text-xl font-bold text-text mb-4" style={{ fontFamily: 'var(--font-serif)' }}>Privacy-first</h3>
             <p className="text-text-light leading-relaxed">
               All data encrypted. No third-party access. No ads. Your data is yours alone.
             </p>
@@ -104,20 +110,25 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works - Timeline Design */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <h2 className="text-3xl md:text-4xl font-bold text-text mb-16 text-center">How it works</h2>
+      <section className="container mx-auto px-4 py-16 md:py-24" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="text-center mb-16">
+          <p className="label-mono justify-center mb-6">
+            SIMPLE PROCESS
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-text" style={{ fontFamily: 'var(--font-serif)' }}>How it works</h2>
+        </div>
 
         <div className="space-y-12 max-w-3xl mx-auto">
           {/* Step 1 */}
           <div className="flex gap-8">
             <div className="flex flex-col items-center flex-shrink-0">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white font-bold text-xl mb-3 shadow-md">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white font-bold text-xl mb-3 shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                 1
               </div>
               <div className="w-1 h-16 bg-primary opacity-20"></div>
             </div>
             <div className="pb-8 pt-2">
-              <h3 className="text-xl font-bold text-text mb-3">Install small sensors</h3>
+              <h3 className="text-xl font-bold text-text mb-3" style={{ fontFamily: 'var(--font-serif)' }}>Install small sensors</h3>
               <p className="text-text-light leading-relaxed mb-4">
                 Tiny motion sensors go in bedroom, bathroom, and living areas. Our installer handles everything. Takes about 30-60 minutes.
               </p>
@@ -130,13 +141,13 @@ export default function LandingPage() {
           {/* Step 2 */}
           <div className="flex gap-8">
             <div className="flex flex-col items-center flex-shrink-0">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white font-bold text-xl mb-3 shadow-md">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white font-bold text-xl mb-3 shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                 2
               </div>
               <div className="w-1 h-16 bg-primary opacity-20"></div>
             </div>
             <div className="pb-8 pt-2">
-              <h3 className="text-xl font-bold text-text mb-3">System learns daily routine</h3>
+              <h3 className="text-xl font-bold text-text mb-3" style={{ fontFamily: 'var(--font-serif)' }}>System learns daily routine</h3>
               <p className="text-text-light leading-relaxed mb-4">
                 Over 7 days, the AI learns normal patterns—when they wake, sleep, shower, and use the bathroom. It adapts to their unique schedule.
               </p>
@@ -149,12 +160,12 @@ export default function LandingPage() {
           {/* Step 3 */}
           <div className="flex gap-8">
             <div className="flex flex-col items-center flex-shrink-0">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent text-white font-bold text-xl shadow-md">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent text-white font-bold text-xl shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                 3
               </div>
             </div>
             <div className="pt-2">
-              <h3 className="text-xl font-bold text-text mb-3">You get alerts only when needed</h3>
+              <h3 className="text-xl font-bold text-text mb-3" style={{ fontFamily: 'var(--font-serif)' }}>You get alerts only when needed</h3>
               <p className="text-text-light leading-relaxed mb-4">
                 After learning, you receive alerts only for genuine concerns—prolonged inactivity, bathroom falls, unexpected patterns. Peace of mind without noise.
               </p>

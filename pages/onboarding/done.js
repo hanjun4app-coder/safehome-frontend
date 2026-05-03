@@ -3,28 +3,30 @@ import Button from '../../components/Button'
 
 export default function ConfirmationPage() {
   return (
-    <div className="container mx-auto px-4 py-16" style={{ backgroundColor: 'var(--color-background)' }}>
+    <div className="container mx-auto px-4 py-16" style={{ backgroundColor: 'var(--color-background)', position: 'relative', zIndex: 2 }}>
       <div className="max-w-2xl mx-auto">
         {/* Success Section */}
         <div className="text-center mb-16">
           <div className="inline-block mb-8 relative">
-            <div className="flex items-center justify-center h-24 w-24 rounded-full mx-auto" style={{ backgroundColor: 'rgba(111, 207, 151, 0.15)' }}>
-              <span className="text-5xl">✓</span>
+            <div className="flex items-center justify-center h-24 w-24 rounded-full mx-auto animate-float" style={{ backgroundColor: 'var(--color-accent-pale)' }}>
+              <span className="text-5xl" style={{ animation: 'pulse 2s ease-in-out infinite' }}>✓</span>
             </div>
-            {/* Celebration animation could go here */}
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-text mb-6">You're all set!</h1>
-          <p className="text-xl text-text-light mb-6">
+          <p className="label-mono justify-center mb-6">
+            INSTALLATION SCHEDULED
+          </p>
+          <h1 className="text-4xl md:text-5xl font-bold text-text mb-6" style={{ fontFamily: 'var(--font-serif)' }}>You're all set!</h1>
+          <p className="text-xl text-text-soft mb-6">
             We'll contact you within 24 hours to confirm your installation.
           </p>
-          <p className="text-base text-text-lighter">
+          <p className="text-base text-text-light">
             You can always reach us if you have questions.
           </p>
         </div>
 
         {/* Learning Period - Optimization 4 */}
         <div className="card card-lg mb-16" style={{ backgroundColor: 'rgba(245, 158, 11, 0.05)', borderColor: 'rgba(245, 158, 11, 0.3)' }}>
-          <h2 className="text-2xl font-bold text-text mb-6">About Your Learning Period</h2>
+          <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: 'var(--font-serif)' }}>About Your Learning Period</h2>
           <p className="text-text-light mb-6">
             After installation, the system will take <strong>about 7 days</strong> to learn your loved one's daily patterns and routines. During this time:
           </p>
@@ -50,7 +52,7 @@ export default function ConfirmationPage() {
 
         {/* What Happens Next */}
         <div className="card card-lg mb-16">
-          <h2 className="text-2xl font-bold text-text mb-8">What happens next</h2>
+          <h2 className="text-2xl font-bold text-text mb-8" style={{ fontFamily: 'var(--font-serif)' }}>What happens next</h2>
           <div className="space-y-6">
             <div className="flex gap-6">
               <div className="flex-shrink-0">
@@ -59,7 +61,7 @@ export default function ConfirmationPage() {
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-text mb-2">We'll contact you to confirm</h3>
+                <h3 className="font-semibold text-text mb-2" style={{ fontFamily: 'var(--font-serif)' }}>We'll contact you to confirm</h3>
                 <p className="text-text-light">
                   Our team will call or email you within 24 hours to confirm your installation date and time.
                 </p>
@@ -68,12 +70,12 @@ export default function ConfirmationPage() {
 
             <div className="flex gap-6">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shadow-md">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                   2
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-text mb-2">We'll prepare your sensors</h3>
+                <h3 className="font-semibold text-text mb-2" style={{ fontFamily: 'var(--font-serif)' }}>We'll prepare your sensors</h3>
                 <p className="text-text-light">
                   Before your appointment, we'll prepare your sensors and get everything ready for installation.
                 </p>
@@ -82,12 +84,12 @@ export default function ConfirmationPage() {
 
             <div className="flex gap-6">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shadow-md">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                   3
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-text mb-2">Installation day</h3>
+                <h3 className="font-semibold text-text mb-2" style={{ fontFamily: 'var(--font-serif)' }}>Installation day</h3>
                 <p className="text-text-light">
                   Our installer will set up sensors in key rooms and make sure everything is working properly. Takes about 30-60 minutes.
                 </p>
@@ -96,12 +98,12 @@ export default function ConfirmationPage() {
 
             <div className="flex gap-6">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-accent text-white font-bold text-lg shadow-md">
+                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-accent text-white font-bold text-lg shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                   4
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-text mb-2">You'll get access</h3>
+                <h3 className="font-semibold text-text mb-2" style={{ fontFamily: 'var(--font-serif)' }}>You'll get access</h3>
                 <p className="text-text-light">
                   Once installation is complete and verified, we'll send you a password setup link so you can log in and monitor your loved one.
                 </p>
@@ -112,7 +114,7 @@ export default function ConfirmationPage() {
 
         {/* Pre-installation Checklist */}
         <div className="card card-lg mb-16" style={{ backgroundColor: 'rgba(74, 144, 226, 0.05)', borderColor: 'rgba(74, 144, 226, 0.2)' }}>
-          <h2 className="text-2xl font-bold text-text mb-8">Please prepare these items</h2>
+          <h2 className="text-2xl font-bold text-text mb-8" style={{ fontFamily: 'var(--font-serif)' }}>Please prepare these items</h2>
           <ul className="space-y-4">
             <li className="flex items-start gap-4">
               <span className="text-primary font-bold text-lg flex-shrink-0 mt-0">✓</span>
