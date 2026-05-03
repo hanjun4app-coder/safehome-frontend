@@ -3,247 +3,224 @@ import Button from '../components/Button'
 
 export default function LandingPage() {
   return (
-    <div style={{ background: 'linear-gradient(135deg, #F7F9FB 0%, #EEF4FA 100%)' }} className="min-h-screen">
-      {/* Hero Section - Premium Design */}
-      <section className="container mx-auto px-4 py-20 md:py-32 text-center" style={{ position: 'relative', zIndex: 2 }}>
-        {/* Mono Label */}
-        <p className="label-mono mb-8 justify-center">
-          <span className="label-dot animate-pulse"></span>
-          CARING FOR ELDERS, RESPECTING PRIVACY
-        </p>
+    <div style={{ minHeight: '100vh', backgroundColor: '#ffffff' }}>
+      {/* ========== HERO SECTION ========== */}
+      <section style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+        <div className="container">
+          <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
+            <h1 style={{ marginBottom: '24px', fontSize: '42px', fontWeight: '700', lineHeight: '1.2' }}>
+              Know your parent is safe — even when you're not there.
+            </h1>
 
-        {/* Trust Badge */}
-        <div className="mb-12 inline-block">
-          <div className="badge badge-success flex items-center gap-2 px-6 py-3">
-            <span className="text-accent font-semibold">✓ Privacy Protected</span>
-          </div>
-        </div>
-
-        {/* Main Headline with Serif */}
-        <h1 className="text-5xl md:text-6xl font-bold text-text mb-8 leading-tight max-w-4xl mx-auto" style={{ fontFamily: 'var(--font-serif)' }}>
-          Keep your loved one safe at home
-          <span className="text-primary italic" style={{ fontStyle: 'italic' }}> — without cameras</span>
-        </h1>
-
-        {/* Subheadline */}
-        <p className="text-xl md:text-2xl text-text-light mb-12 leading-relaxed max-w-3xl mx-auto">
-          We help you notice when something might be wrong — early.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Link href="/onboarding">
-            <Button className="button-primary px-8 py-4 text-lg font-semibold">See how this works for your family →</Button>
-          </Link>
-          <Link href="/pre-install-guide">
-            <Button className="button-secondary px-8 py-4 text-lg font-semibold">
-              See what's involved →
-            </Button>
-          </Link>
-        </div>
-
-        {/* Hero Stats / Social Proof */}
-        <div className="grid grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto pt-12 border-t border-border">
-          <div>
-            <div className="text-4xl md:text-5xl font-bold text-primary mb-2">0</div>
-            <div className="text-sm text-text-light">Cameras in your home</div>
-          </div>
-          <div>
-            <div className="text-4xl md:text-5xl font-bold text-primary mb-2">100%</div>
-            <div className="text-sm text-text-light">Data encrypted</div>
-          </div>
-          <div>
-            <div className="text-4xl md:text-5xl font-bold text-primary mb-2">30-60</div>
-            <div className="text-sm text-text-light">Min to install</div>
-          </div>
-        </div>
-
-        {/* Social Proof */}
-        <p className="text-sm text-text-lighter mt-12">
-          Trusted by local families during our pilot phase
-        </p>
-      </section>
-
-      {/* Core Benefits - Enhanced Card Design */}
-      <section className="container mx-auto px-4 py-16 md:py-24" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="text-center mb-16">
-          <p className="label-mono justify-center mb-6">
-            CORE FEATURES
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-text" style={{ fontFamily: 'var(--font-serif)' }}>Why families choose us</h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Benefit Card 1 */}
-          <div className="card card-lg" style={{ background: 'white', border: '1px solid var(--color-border)', transition: 'all 0.3s ease' }}>
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'var(--color-primary-pale)' }}>
-              <span className="text-3xl">🚫</span>
-            </div>
-            <h3 className="text-xl font-bold text-text mb-4" style={{ fontFamily: 'var(--font-serif)' }}>No cameras</h3>
-            <p className="text-text-light leading-relaxed">
-              We monitor only activity patterns, not people. Your loved one's dignity and privacy are fully protected.
+            <p style={{ fontSize: '18px', marginBottom: '40px', color: '#6b7280', lineHeight: '1.65' }}>
+              SafeHome quietly notices unusual activity at home and lets you know when something may need attention — without cameras or wearables.
             </p>
-          </div>
 
-          {/* Benefit Card 2 */}
-          <div className="card card-lg" style={{ background: 'white', border: '1px solid var(--color-border)', transition: 'all 0.3s ease' }}>
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'var(--color-accent-pale)' }}>
-              <span className="text-3xl">📱</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '16px' }}>
+              <Link href="/onboarding">
+                <Button className="button-primary" style={{ width: '100%', fontSize: '16px', padding: '12px 28px' }}>
+                  Get Early Access
+                </Button>
+              </Link>
+              <Link href="/pre-install-guide">
+                <Button className="button-secondary" style={{ width: '100%', fontSize: '16px', padding: '12px 28px' }}>
+                  See How It Works
+                </Button>
+              </Link>
             </div>
-            <h3 className="text-xl font-bold text-text mb-4" style={{ fontFamily: 'var(--font-serif)' }}>No wearables</h3>
-            <p className="text-text-light leading-relaxed">
-              Nothing to wear, charge, or lose. The system works silently in the background, zero burden.
-            </p>
-          </div>
 
-          {/* Benefit Card 3 */}
-          <div className="card card-lg" style={{ background: 'white', border: '1px solid var(--color-border)', transition: 'all 0.3s ease' }}>
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg mb-6" style={{ backgroundColor: 'var(--color-primary-pale)' }}>
-              <span className="text-3xl">🔐</span>
-            </div>
-            <h3 className="text-xl font-bold text-text mb-4" style={{ fontFamily: 'var(--font-serif)' }}>Privacy-first</h3>
-            <p className="text-text-light leading-relaxed">
-              All data encrypted. No third-party access. No ads. Your data is yours alone.
+            <p style={{ fontSize: '13px', color: '#9ca3af', textAlign: 'center' }}>
+              Limited pilot spots available. Setup takes about 30–60 minutes.
             </p>
           </div>
         </div>
       </section>
 
-      {/* How It Works - Timeline Design */}
-      <section className="container mx-auto px-4 py-16 md:py-24" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="text-center mb-16">
-          <p className="label-mono justify-center mb-6">
-            SIMPLE PROCESS
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-text" style={{ fontFamily: 'var(--font-serif)' }}>How it works</h2>
-        </div>
-
-        <div className="space-y-12 max-w-3xl mx-auto">
-          {/* Step 1 */}
-          <div className="flex gap-8">
-            <div className="flex flex-col items-center flex-shrink-0">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white font-bold text-xl mb-3 shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
-                1
-              </div>
-              <div className="w-1 h-16 bg-primary opacity-20"></div>
-            </div>
-            <div className="pb-8 pt-2">
-              <h3 className="text-xl font-bold text-text mb-3" style={{ fontFamily: 'var(--font-serif)' }}>Install small sensors</h3>
-              <p className="text-text-light leading-relaxed mb-4">
-                Tiny motion sensors go in bedroom, bathroom, and living areas. Our installer handles everything. Takes about 30-60 minutes.
+      {/* ========== BENEFITS SECTION ========== */}
+      <section style={{ paddingTop: '60px', paddingBottom: '60px', backgroundColor: '#f9fafb' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
+            {/* Benefit 1 */}
+            <div style={{ padding: '24px', backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+              <div style={{ fontSize: '28px', marginBottom: '16px' }}>🎯</div>
+              <h3 style={{ marginBottom: '12px', fontSize: '18px', fontWeight: '600' }}>No cameras</h3>
+              <p style={{ fontSize: '15px', color: '#6b7280', lineHeight: '1.6' }}>
+                We monitor motion patterns, not people. Privacy and independence come first.
               </p>
-              <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 text-sm text-primary inline-block">
-                ℹ️ WiFi connection required
-              </div>
+            </div>
+
+            {/* Benefit 2 */}
+            <div style={{ padding: '24px', backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+              <div style={{ fontSize: '28px', marginBottom: '16px' }}>⚡</div>
+              <h3 style={{ marginBottom: '12px', fontSize: '18px', fontWeight: '600' }}>No wearables</h3>
+              <p style={{ fontSize: '15px', color: '#6b7280', lineHeight: '1.6' }}>
+                Nothing to wear, charge, or lose. Works quietly in the background.
+              </p>
+            </div>
+
+            {/* Benefit 3 */}
+            <div style={{ padding: '24px', backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+              <div style={{ fontSize: '28px', marginBottom: '16px' }}>🔒</div>
+              <h3 style={{ marginBottom: '12px', fontSize: '18px', fontWeight: '600' }}>Privacy-first</h3>
+              <p style={{ fontSize: '15px', color: '#6b7280', lineHeight: '1.6' }}>
+                Encrypted. No third-party access. No ads. Your data is yours.
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Step 2 */}
-          <div className="flex gap-8">
-            <div className="flex flex-col items-center flex-shrink-0">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white font-bold text-xl mb-3 shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
-                2
-              </div>
-              <div className="w-1 h-16 bg-primary opacity-20"></div>
-            </div>
-            <div className="pb-8 pt-2">
-              <h3 className="text-xl font-bold text-text mb-3" style={{ fontFamily: 'var(--font-serif)' }}>System learns daily routine</h3>
-              <p className="text-text-light leading-relaxed mb-4">
-                Over 7 days, the AI learns normal patterns—when they wake, sleep, shower, and use the bathroom. It adapts to their unique schedule.
-              </p>
-              <div className="bg-amber-50 border border-amber-100 rounded-lg p-3 text-sm text-amber-800 inline-block">
-                💡 More alerts during learning week (normal)
-              </div>
-            </div>
-          </div>
+      {/* ========== HOW IT WORKS SECTION ========== */}
+      <section style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+        <div className="container">
+          <h2 style={{ textAlign: 'center', marginBottom: '48px' }}>How it works</h2>
 
-          {/* Step 3 */}
-          <div className="flex gap-8">
-            <div className="flex flex-col items-center flex-shrink-0">
-              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-accent text-white font-bold text-xl shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
-                3
+          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+            {/* Step 1 */}
+            <div style={{ marginBottom: '40px', display: 'flex', gap: '24px' }}>
+              <div style={{ minWidth: '40px' }}>
+                <div style={{ width: '40px', height: '40px', backgroundColor: '#10b981', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '16px' }}>
+                  1
+                </div>
+              </div>
+              <div>
+                <h3 style={{ marginBottom: '8px' }}>Install sensors</h3>
+                <p style={{ fontSize: '15px', color: '#6b7280' }}>
+                  Small motion sensors in bedroom, bathroom, living room. Takes about 30-60 minutes.
+                </p>
               </div>
             </div>
-            <div className="pt-2">
-              <h3 className="text-xl font-bold text-text mb-3" style={{ fontFamily: 'var(--font-serif)' }}>You get alerts only when needed</h3>
-              <p className="text-text-light leading-relaxed mb-4">
-                After learning, you receive alerts only for genuine concerns—prolonged inactivity, bathroom falls, unexpected patterns. Peace of mind without noise.
-              </p>
-              <div className="bg-green-50 border border-green-100 rounded-lg p-3 text-sm text-green-800 inline-block">
-                ✓ Alerts go to your phone, email, and dashboard
+
+            {/* Step 2 */}
+            <div style={{ marginBottom: '40px', display: 'flex', gap: '24px' }}>
+              <div style={{ minWidth: '40px' }}>
+                <div style={{ width: '40px', height: '40px', backgroundColor: '#10b981', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '16px' }}>
+                  2
+                </div>
+              </div>
+              <div>
+                <h3 style={{ marginBottom: '8px' }}>System learns routines</h3>
+                <p style={{ fontSize: '15px', color: '#6b7280' }}>
+                  Over a week, AI learns normal patterns—when they wake, sleep, shower. Adapts to their schedule.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div style={{ display: 'flex', gap: '24px' }}>
+              <div style={{ minWidth: '40px' }}>
+                <div style={{ width: '40px', height: '40px', backgroundColor: '#10b981', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '600', fontSize: '16px' }}>
+                  3
+                </div>
+              </div>
+              <div>
+                <h3 style={{ marginBottom: '8px' }}>You get alerts when needed</h3>
+                <p style={{ fontSize: '15px', color: '#6b7280' }}>
+                  Receive alerts only for real concerns—falls, prolonged inactivity, unusual patterns.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section style={{ backgroundColor: 'var(--color-background-light)' }} className="border-t border-border">
-        <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="card card-lg max-w-3xl mx-auto" style={{ background: 'linear-gradient(135deg, rgba(74, 144, 226, 0.03) 0%, rgba(111, 207, 151, 0.03) 100%)', borderColor: 'var(--color-primary)' }}>
-            <h2 className="text-2xl md:text-3xl font-bold text-text mb-8">Questions about privacy? You should be.</h2>
-            <div className="space-y-5 text-text-light mb-8">
-              <div className="flex gap-4">
-                <span className="text-primary font-bold text-xl flex-shrink-0">✓</span>
-                <div><strong className="text-text">Your data stays with you.</strong> We process everything locally or on encrypted servers.</div>
+      {/* ========== PRIVACY SECTION ========== */}
+      <section style={{ paddingTop: '60px', paddingBottom: '60px', backgroundColor: '#f0f9ff', borderTop: '1px solid #e5e7eb', borderBottom: '1px solid #e5e7eb' }}>
+        <div className="container">
+          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <h2 style={{ textAlign: 'center', marginBottom: '32px' }}>Your privacy matters</h2>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <div style={{ minWidth: '24px', marginTop: '2px', color: '#10b981', fontWeight: 'bold' }}>✓</div>
+                <div>
+                  <p style={{ color: '#1f2937', fontWeight: '500', marginBottom: '4px' }}>Data stays local</p>
+                  <p style={{ fontSize: '14px', color: '#6b7280' }}>
+                    We process everything locally or on encrypted servers. Not shared with third parties.
+                  </p>
+                </div>
               </div>
-              <div className="flex gap-4">
-                <span className="text-primary font-bold text-xl flex-shrink-0">✓</span>
-                <div><strong className="text-text">We never use your data for ads.</strong> No profiling, no selling, no tracking.</div>
+
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <div style={{ minWidth: '24px', marginTop: '2px', color: '#10b981', fontWeight: 'bold' }}>✓</div>
+                <div>
+                  <p style={{ color: '#1f2937', fontWeight: '500', marginBottom: '4px' }}>No ads, no selling</p>
+                  <p style={{ fontSize: '14px', color: '#6b7280' }}>
+                    We don't profile users or sell data. You're the customer, not the product.
+                  </p>
+                </div>
               </div>
-              <div className="flex gap-4">
-                <span className="text-primary font-bold text-xl flex-shrink-0">✓</span>
-                <div><strong className="text-text">You're in control.</strong> Delete data anytime. Cancel anytime. No long contracts.</div>
+
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <div style={{ minWidth: '24px', marginTop: '2px', color: '#10b981', fontWeight: 'bold' }}>✓</div>
+                <div>
+                  <p style={{ color: '#1f2937', fontWeight: '500', marginBottom: '4px' }}>You're in control</p>
+                  <p style={{ fontSize: '14px', color: '#6b7280' }}>
+                    Cancel anytime. Delete your data anytime. No lock-in contracts.
+                  </p>
+                </div>
               </div>
             </div>
-            <p className="text-sm text-text-lighter italic">
-              We'd rather be boring about privacy than revolutionary. It's just the right thing to do.
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FINAL CTA ========== */}
+      <section style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+        <div className="container">
+          <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+            <h2 style={{ marginBottom: '24px' }}>Ready to get early access?</h2>
+            <p style={{ fontSize: '16px', marginBottom: '32px', color: '#6b7280' }}>
+              We're building SafeHome with early adopters. Get on the list and help shape the future of elder care.
+            </p>
+            <div style={{ marginBottom: '16px' }}>
+              <Link href="/onboarding">
+                <Button className="button-primary" style={{ width: '100%', fontSize: '16px', padding: '12px 28px' }}>
+                  Get Early Access
+                </Button>
+              </Link>
+            </div>
+            <p style={{ fontSize: '13px', color: '#9ca3af' }}>
+              Limited pilot spots available. Setup takes about 30–60 minutes.
             </p>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 py-16 md:py-24 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-text mb-6">Ready to get started?</h2>
-        <p className="text-lg text-text-light mb-10 max-w-2xl mx-auto">
-          Join our pilot program and give your family peace of mind.
-        </p>
-        <Link href="/onboarding">
-          <Button className="button-primary px-8 py-4 text-lg font-semibold">Get Started →</Button>
-        </Link>
-      </section>
-
-      {/* Footer Section */}
-      <section style={{ backgroundColor: 'var(--color-background)' }} className="border-t border-border">
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid md:grid-cols-2 gap-12 pb-12 border-b border-border">
+      {/* ========== FOOTER ========== */}
+      <footer style={{ paddingTop: '40px', paddingBottom: '40px', borderTop: '1px solid #e5e7eb', backgroundColor: '#f9fafb' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', marginBottom: '32px' }}>
             <div>
-              <h3 className="font-semibold text-text mb-4">Have questions?</h3>
-              <p className="text-text-light mb-2">support@safehome.com</p>
-              <p className="text-text-light">(555) 123-4567</p>
+              <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: '#1f2937' }}>Questions?</h3>
+              <p style={{ fontSize: '14px', color: '#6b7280' }}>
+                Email us at <a href="mailto:support@linkrytech.com" style={{ color: '#2563eb' }}>support@linkrytech.com</a>
+              </p>
             </div>
             <div>
-              <h3 className="font-semibold text-text mb-4">Next steps</h3>
-              <ul className="space-y-3 text-text-light">
-                <li>
-                  <Link href="/pre-install-guide" className="text-primary hover:text-primary-dark font-medium transition-colors">
-                    Pre-installation checklist →
+              <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: '#1f2937' }}>Resources</h3>
+              <ul style={{ listStyle: 'none' }}>
+                <li style={{ marginBottom: '8px' }}>
+                  <Link href="/pre-install-guide" style={{ fontSize: '14px', color: '#2563eb' }}>
+                    Installation guide
                   </Link>
                 </li>
                 <li>
-                  <Link href="/login" className="text-primary hover:text-primary-dark font-medium transition-colors">
-                    Already set up? Sign in →
+                  <Link href="/login" style={{ fontSize: '14px', color: '#2563eb' }}>
+                    Sign in
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <p className="text-center text-sm text-text-lighter pt-12">
-            Keeping your loved ones safe at home, with privacy in mind. © SafeHome 2026
-          </p>
+
+          <div style={{ borderTop: '1px solid #e5e7eb', paddingTop: '24px', textAlign: 'center' }}>
+            <p style={{ fontSize: '13px', color: '#9ca3af' }}>
+              © 2026 Linkry Tech. Building trust in elder care technology.
+            </p>
+          </div>
         </div>
-      </section>
+      </footer>
     </div>
   )
 }
