@@ -169,36 +169,72 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Let's get started</h1>
-      <p className="text-gray-600 mb-8">We'll need some information to set up your system. Step {step} of 4.</p>
+    <div className="container mx-auto px-4 py-16" style={{ backgroundColor: 'var(--color-background)' }}>
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl md:text-4xl font-bold text-text mb-3">Let's get started</h1>
+        <p className="text-text-light mb-12">We'll need some information to set up your system. <span className="font-semibold">Step {step} of 4</span></p>
 
-      {/* Progress Bar */}
-      <div className="flex gap-2 mb-12">
-        {[1, 2, 3, 4].map((s) => (
-          <div
-            key={s}
-            className={`h-2 flex-1 rounded-full transition-colors ${
-              s <= step ? 'bg-blue-600' : 'bg-gray-300'
-            }`}
-          />
-        ))}
-      </div>
+        {/* Progress Indicator */}
+        <div className="mb-16">
+          <div className="progress-container">
+            <div className="progress-bar">
+              <div
+                className="progress-fill"
+                style={{ width: `${(step / 4) * 100}%`, backgroundColor: 'var(--color-primary)' }}
+              ></div>
+            </div>
 
-      {/* Error Message */}
-      {error && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-          {error}
+            <div className="progress-steps flex justify-between mt-6">
+              {[
+                { step: 1, label: 'Family Info' },
+                { step: 2, label: 'Daily Routine' },
+                { step: 3, label: 'Contact' },
+                { step: 4, label: 'Safety' }
+              ].map((item) => (
+                <div
+                  key={item.step}
+                  className="progress-step flex flex-col items-center text-center"
+                  style={{
+                    opacity: item.step <= step ? 1 : 0.5
+                  }}
+                >
+                  <div
+                    className="step-number rounded-full w-10 h-10 flex items-center justify-center font-semibold mb-2 transition-all"
+                    style={{
+                      backgroundColor: item.step <= step ? 'var(--color-primary)' : 'var(--color-border)',
+                      color: item.step <= step ? 'white' : 'var(--color-text-lighter)',
+                      borderRadius: '9999px'
+                    }}
+                  >
+                    {item.step < step ? '✓' : item.step}
+                  </div>
+                  <span className="step-label text-xs font-medium" style={{ color: item.step <= step ? 'var(--color-primary)' : 'var(--color-text-lighter)' }}>
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      )}
+
+        {/* Error Message */}
+        {error && (
+          <div className="alert alert-danger mb-8">
+            {error}
+          </div>
+        )}
 
       <form onSubmit={handleSubmit}>
         {/* Step 1: About your loved one */}
         {step === 1 && (
-          <Card title="About your loved one">
-            <p className="text-gray-600 mb-6">
-              We're setting up your home safety profile.
-            </p>
+          <div className="card card-lg">
+            <div className="card-header">
+              <h2 className="card-title">About your loved one</h2>
+            </div>
+            <div className="card-body">
+              <p className="text-text-light mb-8">
+                We're setting up your home safety profile.
+              </p>
             <Input
               label="Name"
               name="elderName"
@@ -239,12 +275,17 @@ export default function OnboardingPage() {
               ]}
               required
             />
-          </Card>
+            </div>
+          </div>
         )}
 
         {/* Step 2: Daily routine */}
         {step === 2 && (
-          <Card title="Daily routine">
+          <div className="card card-lg">
+            <div className="card-header">
+              <h2 className="card-title">Daily routine</h2>
+            </div>
+            <div className="card-body">
             <Input
               label="Wake up time"
               name="wakeUpTime"
@@ -285,12 +326,17 @@ export default function OnboardingPage() {
               onChange={handleInputChange}
               required
             />
-          </Card>
+            </div>
+          </div>
         )}
 
         {/* Step 3: Contact information */}
         {step === 3 && (
-          <Card title="Contact information">
+          <div className="card card-lg">
+            <div className="card-header">
+              <h2 className="card-title">Contact information</h2>
+            </div>
+            <div className="card-body">
             <Input
               label="Email address"
               name="familyEmail"
@@ -317,27 +363,32 @@ export default function OnboardingPage() {
               placeholder="123 Main St, City, State"
               required
             />
-          </Card>
+            </div>
+          </div>
         )}
 
         {/* Step 4: Safety & Installation */}
         {step === 4 && (
-          <Card title="Final setup details">
-            {/* Trust-building copy - Optimization 3 */}
-            <div className="mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <p className="text-sm text-gray-700">
-                <strong>Why these questions:</strong> These help us reduce false alerts and better understand your loved one's routine. Everything you share stays private and secure.
-              </p>
+          <div className="card card-lg">
+            <div className="card-header">
+              <h2 className="card-title">Final setup details</h2>
             </div>
+            <div className="card-body">
+              {/* Trust-building copy - Optimization 3 */}
+              <div className="alert alert-info mb-8">
+                <p className="text-sm">
+                  <strong>Why these questions:</strong> These help us reduce false alerts and better understand your loved one's routine. Everything you share stays private and secure.
+                </p>
+              </div>
 
-            {/* Time reassurance */}
-            <p className="text-sm text-gray-600 mb-8">
-              <strong>This only takes about 1 minute.</strong>
-            </p>
+              {/* Time reassurance */}
+              <p className="text-sm text-text-light mb-8 font-medium">
+                ⏱️ This only takes about 1 minute.
+              </p>
 
-            {/* Required Fields Section */}
-            <div className="mb-8 pb-8 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-6">Emergency Information</h3>
+              {/* Required Fields Section */}
+              <div className="mb-8 pb-8 border-b border-border">
+                <h3 className="text-lg font-semibold text-text mb-6">Emergency Information</h3>
 
               <Input
                 label="Emergency contact name"
@@ -357,49 +408,51 @@ export default function OnboardingPage() {
                 required
               />
 
-              <div className="mt-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Main Safety Concern</h3>
-                <div className="space-y-3 mb-3">
-                  {[
-                    { value: 'falls', label: 'Fall risk' },
-                    { value: 'inactivity', label: 'Long periods of inactivity' },
-                    { value: 'bathroom', label: 'Bathroom safety' },
-                    { value: 'no_response', label: 'Not responding to calls/alerts' },
-                    { value: 'other', label: 'Other' },
-                  ].map((option) => (
-                    <label key={option.value} className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        checked={formData.mainSafetyConcern.includes(option.value)}
-                        onChange={() => handleSafetyConcernChange(option.value)}
-                        className="w-4 h-4 rounded border-gray-300"
-                      />
-                      <span className="text-gray-700">{option.label}</span>
-                    </label>
-                  ))}
+                <div className="mt-8">
+                  <h3 className="text-lg font-semibold text-text mb-6">Main Safety Concern</h3>
+                  <div className="space-y-4 mb-6">
+                    {[
+                      { value: 'falls', label: 'Fall risk' },
+                      { value: 'inactivity', label: 'Long periods of inactivity' },
+                      { value: 'bathroom', label: 'Bathroom safety' },
+                      { value: 'no_response', label: 'Not responding to calls/alerts' },
+                      { value: 'other', label: 'Other' },
+                    ].map((option) => (
+                      <label key={option.value} className="flex items-center gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={formData.mainSafetyConcern.includes(option.value)}
+                          onChange={() => handleSafetyConcernChange(option.value)}
+                          className="w-5 h-5 rounded accent-primary cursor-pointer"
+                        />
+                        <span className="text-text-light font-medium">{option.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <p className="text-xs text-text-lighter mt-4 mb-4">Select up to 2 that apply most</p>
+
+                  {/* User control/agency copy - Optimization 5 */}
+                  <div className="bg-accent bg-opacity-5 border border-accent border-opacity-20 rounded-lg p-4">
+                    <p className="text-sm text-text-light">
+                      💡 We'll prioritize alerts based on what matters most to you and customize them to your family's needs.
+                    </p>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-2">Select up to 2 that apply most</p>
-
-                {/* User control/agency copy - Optimization 5 */}
-                <p className="text-sm text-gray-600 mt-4 italic">
-                  💡 We'll prioritize alerts based on what matters most to you and customize them to your family's needs.
-                </p>
               </div>
-            </div>
 
-            {/* Optional Fields - Accordion - Optimization 1 */}
-            <div className="mb-8">
-              <button
-                type="button"
-                onClick={() => setExpandedAccordion(!expandedAccordion)}
-                className="flex items-center justify-between w-full py-4 px-0 font-semibold text-gray-900 hover:text-blue-600 transition-colors"
-              >
-                <span>Home Details (Optional)</span>
-                <span className="text-lg">{expandedAccordion ? '−' : '+'}</span>
-              </button>
+              {/* Optional Fields - Accordion - Optimization 1 */}
+              <div className="mb-8">
+                <button
+                  type="button"
+                  onClick={() => setExpandedAccordion(!expandedAccordion)}
+                  className="flex items-center justify-between w-full py-4 px-0 font-semibold text-text hover:text-primary transition-colors"
+                >
+                  <span>Home Details (Optional)</span>
+                  <span className="text-lg" style={{ color: 'var(--color-primary)' }}>{expandedAccordion ? '−' : '+'}</span>
+                </button>
 
-              {expandedAccordion && (
-                <div className="pt-4 space-y-6 border-t border-gray-200">
+                {expandedAccordion && (
+                <div className="pt-6 space-y-6 border-t border-border">
                   <Select
                     label="Do you have pets?"
                     name="hasPets"
@@ -469,11 +522,11 @@ export default function OnboardingPage() {
                   />
                 </div>
               )}
-            </div>
+              </div>
 
-            {/* Installation Details */}
-            <div className="mb-8 pb-8 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-6">Installation Scheduling</h3>
+              {/* Installation Details */}
+              <div className="mb-8 pb-8 border-b border-border">
+                <h3 className="text-lg font-semibold text-text mb-6">Installation Scheduling</h3>
 
               <Input
                 label="Preferred installation date"
@@ -503,29 +556,31 @@ export default function OnboardingPage() {
                 onChange={handleInputChange}
                 placeholder="e.g., Please be quiet, has a pet dog, etc."
               />
+              </div>
             </div>
-          </Card>
+          </div>
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex gap-4 mt-8">
+        <div className="flex gap-4 mt-12">
           {step > 1 && (
-            <Button onClick={handlePrevious} variant="secondary">
-              Back
+            <Button onClick={handlePrevious} className="button-secondary">
+              ← Back
             </Button>
           )}
           {step < 4 && (
-            <Button onClick={handleNext} className="ml-auto">
-              Next
+            <Button onClick={handleNext} className="button-primary ml-auto">
+              Next →
             </Button>
           )}
           {step === 4 && (
-            <Button type="submit" disabled={loading} className="ml-auto">
-              {loading ? 'Submitting...' : 'Submit'}
+            <Button type="submit" disabled={loading} className="button-primary ml-auto" style={{ opacity: loading ? 0.7 : 1 }}>
+              {loading ? 'Submitting...' : 'Complete Setup'}
             </Button>
           )}
         </div>
       </form>
+      </div>
     </div>
   )
 }
