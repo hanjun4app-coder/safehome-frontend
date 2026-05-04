@@ -3,45 +3,55 @@ import Button from '../components/Button'
 
 export default function LandingPage() {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#ffffff' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#fafaf9' }}>
       {/* ========== HERO SECTION ========== */}
-      <section style={{ paddingTop: '60px', paddingBottom: '60px' }}>
-        <div className="container">
-          <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-            <h1 style={{ marginBottom: '24px', fontSize: '42px', fontWeight: '700', lineHeight: '1.2' }}>
-              Know your parent is safe — even when you're not there.
-            </h1>
+      <section className="hero-section">
+        <div className="hero-container">
 
-            <p style={{ fontSize: '18px', marginBottom: '40px', color: '#6b7280', lineHeight: '1.65' }}>
+          {/* LEFT: Hero Copy */}
+          <div className="hero-copy">
+            <h1>Know your parent is safe — even when you're not there.</h1>
+
+            <p>
               SafeHome quietly notices unusual activity at home and lets you know when something may need attention — without cameras or wearables.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '16px' }}>
               <Link href="/onboarding">
-                <Button className="button-primary" style={{ width: '100%', fontSize: '16px', padding: '12px 28px' }}>
+                <Button className="button-primary" style={{ fontSize: '16px' }}>
                   Get Early Access
                 </Button>
               </Link>
               <Link href="/pre-install-guide">
-                <Button className="button-secondary" style={{ width: '100%', fontSize: '16px', padding: '12px 28px' }}>
+                <Button className="button-secondary" style={{ fontSize: '16px' }}>
                   See How It Works
                 </Button>
               </Link>
             </div>
 
-            <p style={{ fontSize: '13px', color: '#9ca3af', textAlign: 'center' }}>
+            <p className="trust-signal">
               Limited pilot spots available. Setup takes about 30–60 minutes.
             </p>
           </div>
+
+          {/* RIGHT: Hero Visual */}
+          <div className="hero-visual">
+            <img
+              src="/images/hero-elderly-reading.jpg"
+              alt="Elderly person reading at home safely"
+            />
+            <div className="hero-visual-overlay"></div>
+          </div>
+
         </div>
       </section>
 
       {/* ========== BENEFITS SECTION ========== */}
-      <section style={{ paddingTop: '60px', paddingBottom: '60px', backgroundColor: '#f9fafb' }}>
+      <section style={{ paddingTop: '60px', paddingBottom: '60px', backgroundColor: '#f5f5f4' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
             {/* Benefit 1 */}
-            <div style={{ padding: '24px', backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+            <div className="card">
               <div style={{ fontSize: '28px', marginBottom: '16px' }}>🎯</div>
               <h3 style={{ marginBottom: '12px', fontSize: '18px', fontWeight: '600' }}>No cameras</h3>
               <p style={{ fontSize: '15px', color: '#6b7280', lineHeight: '1.6' }}>
@@ -50,7 +60,7 @@ export default function LandingPage() {
             </div>
 
             {/* Benefit 2 */}
-            <div style={{ padding: '24px', backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+            <div className="card">
               <div style={{ fontSize: '28px', marginBottom: '16px' }}>⚡</div>
               <h3 style={{ marginBottom: '12px', fontSize: '18px', fontWeight: '600' }}>No wearables</h3>
               <p style={{ fontSize: '15px', color: '#6b7280', lineHeight: '1.6' }}>
@@ -59,7 +69,7 @@ export default function LandingPage() {
             </div>
 
             {/* Benefit 3 */}
-            <div style={{ padding: '24px', backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+            <div className="card">
               <div style={{ fontSize: '28px', marginBottom: '16px' }}>🔒</div>
               <h3 style={{ marginBottom: '12px', fontSize: '18px', fontWeight: '600' }}>Privacy-first</h3>
               <p style={{ fontSize: '15px', color: '#6b7280', lineHeight: '1.6' }}>
@@ -175,12 +185,12 @@ export default function LandingPage() {
             </p>
             <div style={{ marginBottom: '16px' }}>
               <Link href="/onboarding">
-                <Button className="button-primary" style={{ width: '100%', fontSize: '16px', padding: '12px 28px' }}>
+                <Button className="button-primary" style={{ fontSize: '16px' }}>
                   Get Early Access
                 </Button>
               </Link>
             </div>
-            <p style={{ fontSize: '13px', color: '#9ca3af' }}>
+            <p className="trust-signal">
               Limited pilot spots available. Setup takes about 30–60 minutes.
             </p>
           </div>
@@ -188,7 +198,7 @@ export default function LandingPage() {
       </section>
 
       {/* ========== FOOTER ========== */}
-      <footer style={{ paddingTop: '40px', paddingBottom: '40px', borderTop: '1px solid #e5e7eb', backgroundColor: '#f9fafb' }}>
+      <footer style={{ paddingTop: '40px', paddingBottom: '40px', borderTop: '1px solid #e5e7eb', backgroundColor: '#ffffff' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', marginBottom: '32px' }}>
             <div>

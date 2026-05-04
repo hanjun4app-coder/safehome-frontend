@@ -1,4 +1,4 @@
-/* ========== SAFEHOME DESIGN SYSTEM - SIMPLE & CLEAN ========== */
+/* ========== SAFEHOME DESIGN SYSTEM - FINAL POLISH ========== */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
@@ -10,27 +10,30 @@
   --color-primary-light: #dbeafe;
   --color-primary-pale: #f0f9ff;
 
-  --color-accent: #10b981;
-  --color-accent-dark: #059669;
-  --color-accent-light: #d1fae5;
+  --color-accent: #3B82F6;
+  --color-accent-dark: #1D4ED8;
+  --color-accent-light: #EFF6FF;
 
   --color-text: #1f2937;
   --color-text-secondary: #6b7280;
   --color-text-light: #9ca3af;
+  --color-text-trust: #4b5563;
 
-  --color-background: #ffffff;
-  --color-background-alt: #f9fafb;
-  --color-border: #e5e7eb;
+  --color-background: #fafaf9;
+  --color-background-alt: #ffffff;
+  --color-border: #e2e8f0;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px -2px rgba(59, 130, 246, 0.12);
+  --shadow-lg: 0 8px 18px -4px rgba(59, 130, 246, 0.16);
+  --shadow-xl: 0 16px 28px -6px rgba(59, 130, 246, 0.2);
 
   /* Spacing */
   --spacing-2: 8px;
   --spacing-3: 12px;
   --spacing-4: 16px;
+  --spacing-5: 20px;
   --spacing-6: 24px;
   --spacing-8: 32px;
   --spacing-10: 40px;
@@ -41,7 +44,7 @@
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Transitions */
-  --transition: 0.2s ease;
+  --transition: 0.25s ease;
 }
 
 /* ========== GLOBAL STYLES ========== */
@@ -67,9 +70,9 @@ body {
 /* ========== TYPOGRAPHY ========== */
 h1 {
   font-size: 42px;
-  line-height: 1.2;
+  line-height: 1.35;
   font-weight: 700;
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
 }
 
 h2 {
@@ -111,45 +114,149 @@ button, .button {
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 600;
-  padding: 12px 28px;
+  padding: 16px 36px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all var(--transition);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 48px;
+  min-width: 48px;
 }
 
 .button-primary {
-  background-color: var(--color-accent);
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
   color: white;
-  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.28);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .button-primary:hover {
-  background-color: var(--color-accent-dark);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+.button-primary:active {
+  transform: translateY(0);
 }
 
 .button-secondary {
-  background-color: transparent;
+  background-color: #f1f5f9;
   color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  border: 1px solid #e2e8f0;
+  transition: all var(--transition);
+  opacity: 0.8;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .button-secondary:hover {
-  background-color: var(--color-primary-pale);
+  background-color: #e0e7f1;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  opacity: 1;
 }
 
 /* ========== CARDS ========== */
 .card {
-  background-color: var(--color-background);
+  background-color: white;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 12px;
   padding: var(--spacing-6);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+/* ========== TRUST SIGNAL ========== */
+.trust-signal {
+  font-size: 13px;
+  color: var(--color-text-trust);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ========== HERO SECTION ========== */
+.hero-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #fafaf9;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+
+.hero-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-copy h1 {
+  margin-bottom: 24px;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.hero-copy p {
+  margin-bottom: 40px;
+  font-size: 18px;
+  color: #6b7280;
+  line-height: 1.65;
+}
+
+.hero-visual {
+  flex: 1;
+  position: relative;
+  height: 520px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+  min-width: 0;
+}
+
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.hero-visual-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 250, 249, 0.45) 0%,
+    rgba(250, 250, 249, 0.18) 35%,
+    rgba(250, 250, 249, 0.04) 70%,
+    rgba(250, 250, 249, 0) 100%
+  );
+  pointer-events: none;
 }
 
 /* ========== CONTAINER ========== */
@@ -242,6 +349,22 @@ button, .button {
 }
 
 /* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .hero-visual {
+    display: none;
+  }
+
+  .hero-container {
+    gap: 0;
+  }
+
+  .hero-copy {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 32px;
@@ -256,8 +379,28 @@ button, .button {
   }
 
   button, .button {
+    padding: 16px 24px;
+    min-height: 48px;
+  }
+
+  .button-primary,
+  .button-secondary {
     width: 100%;
-    padding: 12px 16px;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .hero-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .hero-copy h1 {
+    font-size: 32px;
+  }
+
+  .hero-copy p {
+    font-size: 16px;
   }
 
   .container {
@@ -269,6 +412,7 @@ button, .button {
   h1 {
     font-size: 28px;
     margin-bottom: var(--spacing-6);
+    line-height: 1.25;
   }
 
   h2 {
@@ -282,6 +426,22 @@ button, .button {
 
   button, .button {
     font-size: 16px;
-    padding: 12px 20px;
+    padding: 16px 20px;
+    min-height: 48px;
+  }
+
+  .button-primary,
+  .button-secondary {
+    max-width: 100%;
+  }
+
+  .hero-copy h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+    line-height: 1.25;
+  }
+
+  .hero-copy p {
+    font-size: 15px;
   }
 }
