@@ -54,7 +54,7 @@ export default function ConfirmationPage() {
         <div className="card card-lg mb-16">
           <h2 className="text-2xl font-bold text-text mb-8" style={{ fontFamily: 'var(--font-serif)' }}>What happens next</h2>
           <div className="space-y-6">
-            <div className="flex gap-6">
+            <div className="flex gap-6" style={{ gap: '24px' }}>
               <div className="flex-shrink-0">
                 <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shadow-md">
                   1
@@ -68,7 +68,7 @@ export default function ConfirmationPage() {
               </div>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6" style={{ gap: '24px' }}>
               <div className="flex-shrink-0">
                 <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                   2
@@ -82,7 +82,7 @@ export default function ConfirmationPage() {
               </div>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6" style={{ gap: '24px' }}>
               <div className="flex-shrink-0">
                 <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                   3
@@ -96,7 +96,7 @@ export default function ConfirmationPage() {
               </div>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6" style={{ gap: '24px' }}>
               <div className="flex-shrink-0">
                 <div className="flex items-center justify-center h-10 w-10 rounded-full bg-accent text-white font-bold text-lg shadow-md" style={{ fontFamily: 'var(--font-serif)' }}>
                   4
@@ -119,7 +119,7 @@ export default function ConfirmationPage() {
             <li className="flex items-start gap-4">
               <span className="text-primary font-bold text-lg flex-shrink-0 mt-0">✓</span>
               <span className="text-text-light">
-                <strong className="text-text">Stable WiFi:</strong> 2.4GHz WiFi works best. Please have your WiFi password ready.
+                <strong className="text-text">Stable WiFi:</strong> Your home Wi-Fi password. A 2.4GHz network is preferred, but if you're not sure, that's okay — we can help check it during setup.
               </span>
             </li>
             <li className="flex items-start gap-4">
@@ -153,7 +153,10 @@ export default function ConfirmationPage() {
         {/* Support */}
         <div className="text-center border-t border-border pt-12 mb-12">
           <p className="text-text-light mb-4">Questions or need to reschedule?</p>
-          <p className="text-text-light mb-6">Contact us at <strong className="text-text">support@safehome.com</strong> or <strong className="text-text">(555) 123-4567</strong></p>
+          <p className="text-text-light mb-6">Contact us at <strong className="text-text">support@linkrytech.com</strong></p>
+          <p className="text-sm text-text-light" style={{ marginTop: '20px' }}>
+            We design the system to stay connected even during temporary power or internet interruptions.
+          </p>
         </div>
 
         {/* Return to Home */}

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-import Button from '../components/Button'
 import Card from '../components/Card'
 
 export default function DashboardPage() {
@@ -18,6 +16,8 @@ export default function DashboardPage() {
       return
     }
     fetchDashboardData()
+    const intervalId = setInterval(fetchDashboardData, 12000)
+    return () => clearInterval(intervalId)
   }, [])
 
   const fetchDashboardData = async () => {
@@ -28,7 +28,8 @@ export default function DashboardPage() {
         setElderName(elderNameStored)
       }
 
-      const response = await fetch('/api/home/status', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
+      const response = await fetch(`${apiUrl}/api/home/status`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -47,6 +48,9 @@ export default function DashboardPage() {
 
       const data = await response.json()
       setStatusData(data)
+      if (data.elder?.name) {
+        setElderName(data.elder.name)
+      }
     } catch (err) {
       setError('Unable to load your dashboard')
       console.error(err)
@@ -63,12 +67,10 @@ export default function DashboardPage() {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'ok':
+      case 'Normal':
         return 'text-green-600'
-      case 'warning':
+      case 'Needs Attention':
         return 'text-yellow-600'
-      case 'critical':
-        return 'text-red-600'
       default:
         return 'text-gray-600'
     }
@@ -76,38 +78,62 @@ export default function DashboardPage() {
 
   const getStatusEmoji = (status) => {
     switch (status) {
-      case 'ok':
+      case 'Normal':
         return '✓'
-      case 'warning':
+      case 'Needs Attention':
         return '⚠'
-      case 'critical':
-        return '!'
       default:
         return '?'
     }
   }
 
+  const formatTime = (value) => {
+    if (!value) return 'No activity yet'
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return 'No activity yet'
+
+    const diffMs = Date.now() - date.getTime()
+    const diffMinutes = Math.max(0, Math.round(diffMs / 60000))
+    const relativeTime = diffMinutes < 1
+      ? 'Just now'
+      : diffMinutes < 60
+      ? `${diffMinutes} min ago`
+      : diffMinutes < 1440
+      ? `${Math.round(diffMinutes / 60)} hr ago`
+      : `${Math.round(diffMinutes / 1440)} day${Math.round(diffMinutes / 1440) === 1 ? '' : 's'} ago`
+
+    return `${relativeTime} • ${date.toLocaleString([], {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    })}`
+  }
+
+  const statusTone = statusData?.status === 'Normal' ? 'All clear' : 'Action may be needed'
+
+  const latestAlert = statusData?.latest_alert_message || 'No active alerts.'
+
   if (loading) {
     return (
-      <div className="text-center py-12">
+      <div className="loading-state">
         <p className="text-gray-600">Loading...</p>
       </div>
     )
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="dashboard-page">
       {/* Header with Logout */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="dashboard-header">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Dashboard
-          </h1>
-          <p className="text-gray-600">{elderName}'s Care Monitor</p>
+          <p className="eyebrow">Care monitor</p>
+          <h1>Dashboard</h1>
+          <p>{elderName}'s home safety overview</p>
         </div>
         <button
           onClick={handleLogout}
-          className="text-sm text-gray-600 hover:text-gray-900 font-medium"
+          className="link-button"
         >
           Sign out
         </button>
@@ -121,54 +147,81 @@ export default function DashboardPage() {
 
       {/* Status Card */}
       {statusData && (
-        <>
-          <Card>
-            <div className={`text-center p-6 rounded-lg ${
-              statusData.status === 'ok' ? 'bg-green-50' :
-              statusData.status === 'warning' ? 'bg-yellow-50' :
-              'bg-red-50'
+        <div className="dashboard-grid">
+          <Card className="status-card">
+            <div className={`status-panel ${
+              statusData.status === 'Normal' ? 'status-ok' :
+              statusData.status === 'Needs Attention' ? 'status-warning' :
+              'status-critical'
             }`}>
-              <div className="mb-4">
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${
-                  statusData.status === 'ok' ? 'bg-green-100' :
-                  statusData.status === 'warning' ? 'bg-yellow-100' :
-                  'bg-red-100'
-                }`}>
-                  <span className={`text-3xl font-bold ${getStatusColor(statusData.status)}`}>
-                    {getStatusEmoji(statusData.status)}
-                  </span>
+              <div className="status-icon">
+                <span className={getStatusColor(statusData.status)}>
+                  {getStatusEmoji(statusData.status)}
+                </span>
+              </div>
+              <div className={`status-badge ${
+                statusData.status === 'Normal' ? 'status-badge-ok' : 'status-badge-warning'
+              }`}>
+                {statusData.status}
+              </div>
+              <h2>{statusData.primary_message}</h2>
+              <p>{statusData.suggestion}</p>
+              <p className="status-summary">{statusTone}</p>
+
+              <div className="metric-row">
+                <div className="metric">
+                  <span>Current status</span>
+                  <strong>{statusData.status}</strong>
+                </div>
+                <div className="metric">
+                  <span>Last activity</span>
+                  <strong>{formatTime(statusData.last_activity)}</strong>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold mb-2">{statusData.primary_message}</h2>
-              <p className="text-gray-600 mb-2">{statusData.suggestion}</p>
-              <p className="text-sm text-gray-500">Last activity: {statusData.last_activity}</p>
             </div>
           </Card>
 
           {/* Recent Alerts */}
-          {statusData.recent_alerts && statusData.recent_alerts.length > 0 && (
-            <Card title="Recent Activity" className="mt-6">
-              <div className="space-y-3">
-                {statusData.recent_alerts.map((alert, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded border border-gray-200">
-                    <p className="font-medium text-gray-900">{alert.message}</p>
-                    <p className="text-sm text-gray-500 mt-1">{alert.type}</p>
-                  </div>
-                ))}
+          <div>
+            <Card title="Elder Info">
+              <div className="activity-list">
+                <div className="activity-item">
+                  <p>{statusData.elder?.name || elderName}</p>
+                  <p>{statusData.elder?.age ? `Age ${statusData.elder.age}` : statusData.elder?.elder_id || 'Profile active'}</p>
+                </div>
               </div>
             </Card>
-          )}
 
-          {/* Refresh Button */}
-          <div className="mt-8 text-center">
+            {statusData.latest_alert_message ? (
+              <Card title="Latest Alert" className={`mt-6 ${
+                statusData.status === 'Needs Attention' ? 'latest-alert-card-attention' : ''
+              }`}>
+                <div className="activity-list">
+                  <div className={`activity-item latest-alert-item ${
+                    statusData.status === 'Needs Attention' ? 'latest-alert-attention' : ''
+                  }`}>
+                    <p>{latestAlert}</p>
+                    <p>{statusData.secondary_info?.[0] || 'Active alert'}</p>
+                  </div>
+                </div>
+              </Card>
+            ) : (
+              <Card title="Latest Alert" className="mt-6">
+                <div className="activity-item latest-alert-item latest-alert-clear">
+                  <p>{latestAlert}</p>
+                  <p>Nothing needs attention right now.</p>
+                </div>
+              </Card>
+            )}
+
             <button
               onClick={fetchDashboardData}
-              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              className="link-button mt-6"
             >
               Refresh Status
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   )

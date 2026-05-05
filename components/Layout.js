@@ -2,22 +2,31 @@ import Link from 'next/link'
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <header className="border-b border-gray-100">
-        <div className="max-w-2xl mx-auto px-6 py-4">
-          <Link href="/" className="text-2xl font-semibold text-gray-900">
-            SafeHome
+    <div className="app-shell">
+      <header className="site-header">
+        <div className="site-header-inner">
+          <Link href="/" className="brand-mark">
+            <span className="brand-dot" aria-hidden="true"></span>
+            <span>SafeHome</span>
           </Link>
+          <nav className="site-nav" aria-label="Primary">
+            <Link href="/pre-install-guide">How it works</Link>
+            <Link href="/login">Sign in</Link>
+          </nav>
         </div>
       </header>
 
-      <main className="flex-1 max-w-2xl mx-auto w-full px-6 py-12">
+      <main className="app-main">
         {children}
       </main>
 
-      <footer className="border-t border-gray-100 mt-12">
-        <div className="max-w-2xl mx-auto px-6 py-6 text-center text-sm text-gray-500">
+      <footer className="site-footer">
+        <div className="container site-footer-inner">
           <p>Keeping your loved ones safe at home, with privacy in mind.</p>
+          <nav className="site-footer-links" aria-label="Legal">
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms of Service</Link>
+          </nav>
         </div>
       </footer>
     </div>

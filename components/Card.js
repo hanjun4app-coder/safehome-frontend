@@ -1,7 +1,7 @@
-export default function Card({ children, title }) {
+export default function Card({ children, title, className = '' }) {
   return (
-    <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-      {title && <h2 className="text-lg font-semibold mb-4 text-gray-900">{title}</h2>}
+    <div className={`card ${className}`}>
+      {title && <h2 className="card-title">{title}</h2>}
       {children}
     </div>
   )

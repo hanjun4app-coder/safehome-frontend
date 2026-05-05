@@ -12,6 +12,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showForgotPassword, setShowForgotPassword] = useState(false)
+  const getApiUrl = () => process.env.NEXT_PUBLIC_API_URL || ''
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,7 +20,7 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${getApiUrl()}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -58,7 +59,7 @@ export default function LoginPage() {
 
     setLoading(true)
     try {
-      const response = await fetch('/api/auth/forgot-password', {
+      const response = await fetch(`${getApiUrl()}/api/auth/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

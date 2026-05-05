@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import Select from '../components/Select'
@@ -10,6 +11,7 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
 
   const [formData, setFormData] = useState({
     // Step 1: About your loved one
@@ -98,6 +100,10 @@ export default function OnboardingPage() {
         setError('Please select a preferred date and time window')
         return false
       }
+      if (!agreedToTerms) {
+        setError('Please agree to the Privacy Policy and Terms of Service')
+        return false
+      }
     }
     return true
   }
@@ -119,7 +125,8 @@ export default function OnboardingPage() {
 
     setLoading(true)
     try {
-      const response = await fetch('/api/onboarding/intake', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
+      const response = await fetch(`${apiUrl}/api/onboarding/intake`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -150,11 +157,16 @@ export default function OnboardingPage() {
         }),
       })
 
+      const data = await response.json()
       if (!response.ok) {
-        throw new Error('Failed to submit form')
+        if (response.status === 409) {
+          setError('This email has already been used. Please sign in or contact support@linkrytech.com.')
+          return
+        }
+        setError(data.detail || data.message || 'Unable to submit your information. Please try again.')
+        return
       }
 
-      const data = await response.json()
       if (data.success) {
         router.push('/onboarding/done')
       } else {
@@ -169,13 +181,13 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-16" style={{ backgroundColor: 'var(--color-background)' }}>
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold text-text mb-3">Let's get started</h1>
-        <p className="text-text-light mb-12">We'll need some information to set up your system. <span className="font-semibold">Step {step} of 4</span></p>
+    <div className="page-wrap">
+      <div className="container onboarding-layout">
+        <aside className="onboarding-intro">
+          <p className="eyebrow">Early access intake</p>
+          <h1>Let's get started</h1>
+          <p>We'll need some information to set up your system. <span className="font-semibold">Step {step} of 4</span></p>
 
-        {/* Progress Indicator */}
-        <div className="mb-16">
           <div className="progress-container">
             <div className="progress-bar">
               <div
@@ -184,7 +196,7 @@ export default function OnboardingPage() {
               ></div>
             </div>
 
-            <div className="progress-steps flex justify-between mt-6">
+            <div className="progress-steps">
               {[
                 { step: 1, label: 'Family Info' },
                 { step: 2, label: 'Daily Routine' },
@@ -193,30 +205,26 @@ export default function OnboardingPage() {
               ].map((item) => (
                 <div
                   key={item.step}
-                  className="progress-step flex flex-col items-center text-center"
+                  className="progress-step text-center"
                   style={{
                     opacity: item.step <= step ? 1 : 0.5
                   }}
                 >
                   <div
-                    className="step-number rounded-full w-10 h-10 flex items-center justify-center font-semibold mb-2 transition-all"
-                    style={{
-                      backgroundColor: item.step <= step ? 'var(--color-primary)' : 'var(--color-border)',
-                      color: item.step <= step ? 'white' : 'var(--color-text-lighter)',
-                      borderRadius: '9999px'
-                    }}
+                    className={`step-number ${item.step <= step ? 'is-active' : ''}`}
                   >
                     {item.step < step ? '✓' : item.step}
                   </div>
-                  <span className="step-label text-xs font-medium" style={{ color: item.step <= step ? 'var(--color-primary)' : 'var(--color-text-lighter)' }}>
+                  <span className="step-label">
                     {item.label}
                   </span>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </aside>
 
+        <div>
         {/* Error Message */}
         {error && (
           <div className="alert alert-danger mb-8">
@@ -227,7 +235,7 @@ export default function OnboardingPage() {
       <form onSubmit={handleSubmit}>
         {/* Step 1: About your loved one */}
         {step === 1 && (
-          <div className="card card-lg">
+          <div className="card form-card">
             <div className="card-header">
               <h2 className="card-title">About your loved one</h2>
             </div>
@@ -281,7 +289,7 @@ export default function OnboardingPage() {
 
         {/* Step 2: Daily routine */}
         {step === 2 && (
-          <div className="card card-lg">
+          <div className="card form-card">
             <div className="card-header">
               <h2 className="card-title">Daily routine</h2>
             </div>
@@ -332,7 +340,7 @@ export default function OnboardingPage() {
 
         {/* Step 3: Contact information */}
         {step === 3 && (
-          <div className="card card-lg">
+          <div className="card form-card">
             <div className="card-header">
               <h2 className="card-title">Contact information</h2>
             </div>
@@ -369,7 +377,7 @@ export default function OnboardingPage() {
 
         {/* Step 4: Safety & Installation */}
         {step === 4 && (
-          <div className="card card-lg">
+          <div className="card form-card">
             <div className="card-header">
               <h2 className="card-title">Final setup details</h2>
             </div>
@@ -383,12 +391,12 @@ export default function OnboardingPage() {
 
               {/* Time reassurance */}
               <p className="text-sm text-text-light mb-8 font-medium">
-                ⏱️ This only takes about 1 minute.
+                This only takes about 1 minute.
               </p>
 
               {/* Required Fields Section */}
-              <div className="mb-8 pb-8 border-b border-border">
-                <h3 className="text-lg font-semibold text-text mb-6">Emergency Information</h3>
+              <div className="form-section">
+                <h3 className="section-label">Emergency Information</h3>
 
               <Input
                 label="Emergency contact name"
@@ -408,9 +416,9 @@ export default function OnboardingPage() {
                 required
               />
 
-                <div className="mt-8">
-                  <h3 className="text-lg font-semibold text-text mb-6">Main Safety Concern</h3>
-                  <div className="space-y-4 mb-6">
+                <div>
+                  <h3 className="section-label mb-4">Main Safety Concern</h3>
+                  <div className="checkbox-grid">
                     {[
                       { value: 'falls', label: 'Fall risk' },
                       { value: 'inactivity', label: 'Long periods of inactivity' },
@@ -418,41 +426,40 @@ export default function OnboardingPage() {
                       { value: 'no_response', label: 'Not responding to calls/alerts' },
                       { value: 'other', label: 'Other' },
                     ].map((option) => (
-                      <label key={option.value} className="flex items-center gap-3 cursor-pointer">
+                      <label key={option.value} className="check-option">
                         <input
                           type="checkbox"
                           checked={formData.mainSafetyConcern.includes(option.value)}
                           onChange={() => handleSafetyConcernChange(option.value)}
-                          className="w-5 h-5 rounded accent-primary cursor-pointer"
                         />
-                        <span className="text-text-light font-medium">{option.label}</span>
+                        <span>{option.label}</span>
                       </label>
                     ))}
                   </div>
                   <p className="text-xs text-text-lighter mt-4 mb-4">Select up to 2 that apply most</p>
 
                   {/* User control/agency copy - Optimization 5 */}
-                  <div className="bg-accent bg-opacity-5 border border-accent border-opacity-20 rounded-lg p-4">
+                  <div className="alert alert-info">
                     <p className="text-sm text-text-light">
-                      💡 We'll prioritize alerts based on what matters most to you and customize them to your family's needs.
+                      We'll prioritize alerts based on what matters most to you and customize them to your family's needs.
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Optional Fields - Accordion - Optimization 1 */}
-              <div className="mb-8">
+              <div className="form-section">
                 <button
                   type="button"
                   onClick={() => setExpandedAccordion(!expandedAccordion)}
-                  className="flex items-center justify-between w-full py-4 px-0 font-semibold text-text hover:text-primary transition-colors"
+                  className="accordion-button"
                 >
                   <span>Home Details (Optional)</span>
-                  <span className="text-lg" style={{ color: 'var(--color-primary)' }}>{expandedAccordion ? '−' : '+'}</span>
+                  <span style={{ color: 'var(--color-primary)' }}>{expandedAccordion ? '−' : '+'}</span>
                 </button>
 
                 {expandedAccordion && (
-                <div className="pt-6 space-y-6 border-t border-border">
+                <div className="pt-6 space-y-6 border-t">
                   <Select
                     label="Do you have pets?"
                     name="hasPets"
@@ -525,8 +532,8 @@ export default function OnboardingPage() {
               </div>
 
               {/* Installation Details */}
-              <div className="mb-8 pb-8 border-b border-border">
-                <h3 className="text-lg font-semibold text-text mb-6">Installation Scheduling</h3>
+              <div className="form-section">
+                <h3 className="section-label">Installation Scheduling</h3>
 
               <Input
                 label="Preferred installation date"
@@ -557,29 +564,46 @@ export default function OnboardingPage() {
                 placeholder="e.g., Please be quiet, has a pet dog, etc."
               />
               </div>
+
+              <div className="legal-agreement">
+                <input
+                  id="legalAgreement"
+                  type="checkbox"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  required
+                />
+                <label htmlFor="legalAgreement">
+                  I agree to the{' '}
+                  <Link href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</Link>
+                  {' '}and{' '}
+                  <Link href="/terms" target="_blank" rel="noopener noreferrer">Terms of Service</Link>
+                </label>
+              </div>
             </div>
           </div>
         )}
 
         {/* Navigation Buttons */}
-        <div className="flex gap-4 mt-12">
+        <div className="form-actions">
           {step > 1 && (
-            <Button onClick={handlePrevious} className="button-secondary">
-              ← Back
+            <Button onClick={handlePrevious} variant="secondary">
+              Back
             </Button>
           )}
           {step < 4 && (
-            <Button onClick={handleNext} className="button-primary ml-auto">
-              Next →
+            <Button onClick={handleNext}>
+              Next
             </Button>
           )}
           {step === 4 && (
-            <Button type="submit" disabled={loading} className="button-primary ml-auto" style={{ opacity: loading ? 0.7 : 1 }}>
+            <Button type="submit" disabled={loading} style={{ opacity: loading ? 0.7 : 1 }}>
               {loading ? 'Submitting...' : 'Complete Setup'}
             </Button>
           )}
         </div>
       </form>
+        </div>
       </div>
     </div>
   )

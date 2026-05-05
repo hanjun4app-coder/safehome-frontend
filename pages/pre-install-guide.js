@@ -4,24 +4,25 @@ import Button from '../components/Button'
 export default function PreInstallGuidePage() {
   return (
     <div className="bg-gradient-to-b from-blue-50 via-white to-gray-50 min-h-screen">
-      {/* Header Section */}
-      <section className="max-w-2xl mx-auto px-6 py-16 text-center">
-        <Link href="/" className="text-blue-600 hover:text-blue-700 text-sm font-semibold mb-8 inline-block">
-          ← Back to home
-        </Link>
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Before installation
-        </h1>
-        <p className="text-xl text-gray-600 mb-3">
-          A quick checklist to make sure your home is ready. Takes 5 minutes to prepare.
-        </p>
-        <p className="text-gray-600">
-          We'll handle everything — this just helps things go faster.
-        </p>
-      </section>
+      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px' }}>
+        {/* Header Section */}
+        <section className="max-w-2xl mx-auto px-6 py-16 text-center">
+          <Link href="/" className="text-blue-600 hover:text-blue-700 text-sm font-semibold mb-8 inline-block">
+            Back to home
+          </Link>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Before installation
+          </h1>
+          <p className="text-xl text-gray-600 mb-3">
+            A quick checklist to make sure your home is ready. Takes 5 minutes to prepare.
+          </p>
+          <p className="text-gray-600">
+            We'll handle everything — this just helps things go faster.
+          </p>
+        </section>
 
-      {/* Main Content */}
-      <section className="max-w-2xl mx-auto px-6 py-12">
+        {/* Main Content */}
+        <section className="max-w-2xl mx-auto px-6 py-12">
         {/* What You Need To Do */}
         <div className="bg-white rounded-xl border border-gray-200 p-8 mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Please prepare these items</h2>
@@ -31,7 +32,7 @@ export default function PreInstallGuidePage() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 mt-1">
                 <div className="flex items-center justify-center h-6 w-6 rounded-full bg-blue-100">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-blue-600 font-bold"></span>
                 </div>
               </div>
               <div>
@@ -40,7 +41,7 @@ export default function PreInstallGuidePage() {
                   The sensors communicate with our servers via WiFi. Make sure you have stable WiFi coverage in the rooms where sensors will be installed (typically bedroom, bathroom, living room).
                 </p>
                 <div className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded">
-                  💡 You'll need your WiFi password during installation
+                  You'll need your WiFi password during installation
                 </div>
               </div>
             </div>
@@ -49,7 +50,7 @@ export default function PreInstallGuidePage() {
             <div className="flex gap-4 pt-4 border-t border-gray-200">
               <div className="flex-shrink-0 mt-1">
                 <div className="flex items-center justify-center h-6 w-6 rounded-full bg-blue-100">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-blue-600 font-bold"></span>
                 </div>
               </div>
               <div>
@@ -58,7 +59,7 @@ export default function PreInstallGuidePage() {
                   Our installer needs to place sensors in key rooms to monitor daily activity. All rooms should be accessible and tidy.
                 </p>
                 <div className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded">
-                  ℹ️ We don't install in private areas. Sensors detect motion, not activity details.
+                  We don't install in private areas. Sensors detect motion, not activity details.
                 </div>
               </div>
             </div>
@@ -67,7 +68,7 @@ export default function PreInstallGuidePage() {
             <div className="flex gap-4 pt-4 border-t border-gray-200">
               <div className="flex-shrink-0 mt-1">
                 <div className="flex items-center justify-center h-6 w-6 rounded-full bg-blue-100">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-blue-600 font-bold"></span>
                 </div>
               </div>
               <div>
@@ -76,7 +77,7 @@ export default function PreInstallGuidePage() {
                   Sensors need to be powered. Make sure there are accessible power outlets near bedroom, bathroom, and living room areas.
                 </p>
                 <div className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded">
-                  ℹ️ We can work with limited outlets—our installer will assess and advise
+                  We can work with limited outlets—our installer will assess and advise
                 </div>
               </div>
             </div>
@@ -85,7 +86,7 @@ export default function PreInstallGuidePage() {
             <div className="flex gap-4 pt-4 border-t border-gray-200">
               <div className="flex-shrink-0 mt-1">
                 <div className="flex items-center justify-center h-6 w-6 rounded-full bg-blue-100">
-                  <span className="text-blue-600 font-bold">✓</span>
+                  <span className="text-blue-600 font-bold"></span>
                 </div>
               </div>
               <div>
@@ -94,7 +95,7 @@ export default function PreInstallGuidePage() {
                   We need someone present to let our installer in, answer questions, and confirm the setup works properly. The process takes about 30-60 minutes.
                 </p>
                 <div className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded">
-                  💡 Our installer is trained to be respectful and efficient
+                  Our installer is trained to be respectful and efficient
                 </div>
               </div>
             </div>
@@ -190,7 +191,7 @@ export default function PreInstallGuidePage() {
                 Can I reschedule if something comes up?
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Absolutely. Just contact us at support@safehome.com or (555) 123-4567. We'll work with you to find a time that fits.
+                Absolutely. Just contact us at support@linkrytech.com. We'll work with you to find a time that fits.
               </p>
             </div>
 
@@ -229,7 +230,7 @@ export default function PreInstallGuidePage() {
         {/* Ready Section */}
         <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-200 p-8 mb-12 text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-6">
-            <span className="text-3xl">✓</span>
+            <span className="text-3xl"></span>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to get started?</h2>
           <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
@@ -246,14 +247,12 @@ export default function PreInstallGuidePage() {
           <p className="text-gray-600 mb-6">Our team is here to help</p>
           <div className="space-y-2">
             <p className="text-gray-600">
-              <span className="font-semibold">Email:</span> support@safehome.com
-            </p>
-            <p className="text-gray-600">
-              <span className="font-semibold">Phone:</span> (555) 123-4567
+              <span className="font-semibold">Email:</span> support@linkrytech.com
             </p>
           </div>
         </div>
-      </section>
+        </section>
+      </div>
     </div>
   )
 }
