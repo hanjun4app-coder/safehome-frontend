@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import Card from '../components/Card'
+import { getApiUrl, readApiJson } from '../lib/api'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -12,8 +13,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showForgotPassword, setShowForgotPassword] = useState(false)
-  const getApiUrl = () => process.env.NEXT_PUBLIC_API_URL || ''
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
@@ -25,14 +24,13 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       })
+      const data = await readApiJson(response, 'Unable to sign in. Please try again.')
 
       if (!response.ok) {
-        const data = await response.json()
         setError(data.detail || 'Invalid email or password')
         return
       }
 
-      const data = await response.json()
       localStorage.setItem('token', data.token)
       
       // Redirect to dashboard if family, admin if installer
@@ -64,9 +62,10 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       })
+      const data = await readApiJson(response, 'Unable to send reset email. Please try again.')
 
       if (!response.ok) {
-        throw new Error('Failed to send reset email')
+        throw new Error(data.detail || 'Failed to send reset email')
       }
 
       setShowForgotPassword(false)

@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import Input from '../components/Input'
 import Select from '../components/Select'
 import Card from '../components/Card'
+import { getApiUrl, readApiJson } from '../lib/api'
 
 export default function OnboardingPage() {
   const router = useRouter()
@@ -125,8 +126,7 @@ export default function OnboardingPage() {
 
     setLoading(true)
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
-      const response = await fetch(`${apiUrl}/api/onboarding/intake`, {
+      const response = await fetch(`${getApiUrl()}/api/onboarding/intake`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -157,7 +157,7 @@ export default function OnboardingPage() {
         }),
       })
 
-      const data = await response.json()
+      const data = await readApiJson(response, 'Unable to submit your information. Please try again.')
       if (!response.ok) {
         if (response.status === 409) {
           setError('This email has already been used. Please sign in or contact support@linkrytech.com.')

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Card from '../components/Card'
 import Button from '../components/Button'
+import { getApiUrl, readApiJson } from '../lib/api'
 
 export default function AdminPage() {
   const router = useRouter()
@@ -32,8 +33,6 @@ export default function AdminPage() {
     }
     fetchAdminData()
   }, [selectedTab])
-
-  const getApiUrl = () => process.env.NEXT_PUBLIC_API_URL || ''
 
   const roomOptions = [
     { value: 'bathroom', label: 'Bathroom' },
@@ -77,7 +76,7 @@ export default function AdminPage() {
         throw new Error('Failed to fetch onboarding submissions')
       }
 
-      const data = await response.json()
+      const data = await readApiJson(response, 'Unable to load onboarding submissions')
       setSubmissions(data.submissions || [])
     } catch (err) {
       setError('Unable to load onboarding submissions')
@@ -156,7 +155,7 @@ export default function AdminPage() {
         throw new Error('Failed to fetch devices')
       }
 
-      const data = await response.json()
+      const data = await readApiJson(response, 'Unable to load devices for this customer.')
       setDevices(data.devices || [])
     } catch (err) {
       setDeviceMessage('Unable to load devices for this customer.')
@@ -336,7 +335,7 @@ export default function AdminPage() {
         throw new Error('Failed to fetch installations')
       }
 
-      const data = await response.json()
+      const data = await readApiJson(response, 'Unable to load installations')
       setInstallations(data.installations || [])
     } catch (err) {
       setError('Unable to load installations')

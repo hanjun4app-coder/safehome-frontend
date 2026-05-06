@@ -785,6 +785,13 @@ a:focus-visible {
   min-width: 140px;
 }
 
+.setup-password-button {
+  display: flex;
+  margin: 8px auto 0;
+  max-width: 260px;
+  width: min(100%, 260px);
+}
+
 .dashboard-page {
   width: min(100% - 40px, 1080px);
   margin: 0 auto;

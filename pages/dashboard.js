@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Card from '../components/Card'
+import { getApiUrl, readApiJson } from '../lib/api'
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -28,8 +29,7 @@ export default function DashboardPage() {
         setElderName(elderNameStored)
       }
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || ''
-      const response = await fetch(`${apiUrl}/api/home/status`, {
+      const response = await fetch(`${getApiUrl()}/api/home/status`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function DashboardPage() {
         throw new Error('Failed to fetch dashboard data')
       }
 
-      const data = await response.json()
+      const data = await readApiJson(response, 'Unable to load your dashboard')
       setStatusData(data)
       if (data.elder?.name) {
         setElderName(data.elder.name)
