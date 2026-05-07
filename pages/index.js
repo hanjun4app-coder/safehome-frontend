@@ -4,60 +4,66 @@ import Button from '../components/Button'
 
 export default function LandingPage() {
   const heroVideoRef = useRef(null)
+  const userEnabledHeroSoundRef = useRef(false)
   const [isHeroVideoMuted, setIsHeroVideoMuted] = useState(true)
 
   useEffect(() => {
-    const attemptMutedPlayback = () => {
+    const attemptHeroPlayback = ({ reload = false } = {}) => {
       const video = heroVideoRef.current
       if (!video) return
 
-      video.muted = true
       video.defaultMuted = true
-      setIsHeroVideoMuted(true)
-      video.load()
-      video.play().catch(() => {})
-    }
 
-    const attemptPlaybackWithoutReload = () => {
-      const video = heroVideoRef.current
-      if (!video) return
+      if (!userEnabledHeroSoundRef.current) {
+        video.muted = true
+        setIsHeroVideoMuted(true)
+      }
 
-      video.muted = true
-      video.defaultMuted = true
-      setIsHeroVideoMuted(true)
+      if (reload) {
+        video.load()
+      }
+
       video.play().catch(() => {})
     }
 
     const handleVisibilityChange = () => {
       if (!document.hidden) {
-        attemptPlaybackWithoutReload()
+        attemptHeroPlayback()
       }
     }
 
-    attemptMutedPlayback()
-    const firstRetry = window.setTimeout(attemptPlaybackWithoutReload, 300)
-    const secondRetry = window.setTimeout(attemptPlaybackWithoutReload, 1000)
+    attemptHeroPlayback({ reload: true })
+    const firstRetry = window.setTimeout(attemptHeroPlayback, 300)
+    const secondRetry = window.setTimeout(attemptHeroPlayback, 1000)
 
     document.addEventListener('visibilitychange', handleVisibilityChange)
-    window.addEventListener('pageshow', attemptPlaybackWithoutReload)
-    window.addEventListener('touchstart', attemptPlaybackWithoutReload, { once: true })
+    window.addEventListener('pageshow', attemptHeroPlayback)
+    window.addEventListener('touchstart', attemptHeroPlayback, { once: true })
 
     return () => {
       window.clearTimeout(firstRetry)
       window.clearTimeout(secondRetry)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
-      window.removeEventListener('pageshow', attemptPlaybackWithoutReload)
-      window.removeEventListener('touchstart', attemptPlaybackWithoutReload)
+      window.removeEventListener('pageshow', attemptHeroPlayback)
+      window.removeEventListener('touchstart', attemptHeroPlayback)
     }
   }, [])
 
   const handleToggleHeroVideoSound = () => {
-    if (!heroVideoRef.current) return
+    const video = heroVideoRef.current
+    if (!video) return
 
-    const nextMutedState = !heroVideoRef.current.muted
-    heroVideoRef.current.muted = nextMutedState
-    setIsHeroVideoMuted(nextMutedState)
-    heroVideoRef.current.play().catch(() => {})
+    if (video.muted) {
+      userEnabledHeroSoundRef.current = true
+      video.muted = false
+      setIsHeroVideoMuted(false)
+      video.play().catch(() => {})
+      return
+    }
+
+    userEnabledHeroSoundRef.current = false
+    video.muted = true
+    setIsHeroVideoMuted(true)
   }
 
   return (
