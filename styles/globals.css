@@ -335,6 +335,31 @@ p {
   width: 100%;
 }
 
+.hero-video-unmute {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.56);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 14px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
+  opacity: 0.86;
+  transition: opacity 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.hero-video-unmute:hover,
+.hero-video-unmute:focus-visible {
+  background: rgba(15, 23, 42, 0.72);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

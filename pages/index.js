@@ -5,6 +5,7 @@ import Button from '../components/Button'
 export default function LandingPage() {
   const heroVideoRef = useRef(null)
   const [shouldLoadHeroVideo, setShouldLoadHeroVideo] = useState(false)
+  const [isHeroVideoMuted, setIsHeroVideoMuted] = useState(true)
 
   useEffect(() => {
     const connection =
@@ -22,6 +23,14 @@ export default function LandingPage() {
       heroVideoRef.current.play().catch(() => {})
     }
   }, [shouldLoadHeroVideo])
+
+  const handleUnmuteHeroVideo = () => {
+    if (!heroVideoRef.current) return
+
+    heroVideoRef.current.muted = false
+    setIsHeroVideoMuted(false)
+    heroVideoRef.current.play().catch(() => {})
+  }
 
   return (
     <div>
@@ -55,7 +64,7 @@ export default function LandingPage() {
               poster="/images/hero-elderly-reading.jpg"
               preload="none"
               autoPlay={shouldLoadHeroVideo}
-              muted
+              muted={isHeroVideoMuted}
               loop
               playsInline
               aria-label="SafeHome privacy-first home safety monitoring"
@@ -64,6 +73,16 @@ export default function LandingPage() {
                 <source src="/videos/safehome-hero.mp4" type="video/mp4" />
               )}
             </video>
+            {shouldLoadHeroVideo && isHeroVideoMuted && (
+              <button
+                type="button"
+                className="hero-video-unmute"
+                onClick={handleUnmuteHeroVideo}
+                aria-label="Unmute hero video"
+              >
+                Unmute
+              </button>
+            )}
           </div>
         </div>
       </section>
