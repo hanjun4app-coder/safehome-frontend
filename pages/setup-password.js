@@ -123,31 +123,43 @@ export default function SetupPasswordPage() {
               onChange={(event) => setPassword(event.target.value)}
               required
             />
-            <div className="password-rules" aria-live="polite">
+            <div className="password-rules mt-4 mb-7 p-4 bg-gray-50 rounded-lg" aria-live="polite">
               {passwordRules.map((rule) => (
                 <div
                   key={rule.label}
-                  className={`password-rule ${rule.valid ? 'is-valid' : ''}`}
+                  className={`password-rule flex items-center gap-3 ${rule.valid ? 'is-valid' : ''}`}
                 >
-                  <span aria-hidden="true">{rule.valid ? '✓' : '○'}</span>
+                  <span aria-hidden="true" className="password-rule-icon">
+                    {rule.valid ? (
+                      <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M16.25 5.75 8.5 13.5l-3.75-3.75" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="1.7" />
+                      </svg>
+                    )}
+                  </span>
                   <span>{rule.label}</span>
                 </div>
               ))}
             </div>
-            <Input
-              label="Confirm password"
-              type="password"
-              value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
-              required
-            />
+            <div className="mt-2">
+              <Input
+                label="Confirm password"
+                type="password"
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
+                required
+              />
+            </div>
             {showPasswordMismatch && (
-              <p className="password-match-message">Passwords do not match yet.</p>
+              <p className="password-match-message mt-2 mb-5 px-2">Passwords do not match yet.</p>
             )}
             <Button
               type="submit"
               disabled={loading || !token || !passwordMeetsRules || !passwordsMatch}
-              className="setup-password-button"
+              className="setup-password-button mt-6 transition-all duration-200"
             >
               {loading ? 'Setting password...' : 'Set Password'}
             </Button>

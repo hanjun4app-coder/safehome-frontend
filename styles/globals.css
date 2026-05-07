@@ -787,34 +787,48 @@ a:focus-visible {
 
 .setup-password-button {
   display: flex;
-  margin: 8px auto 0;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 260px;
+  transition: all 200ms ease;
   width: min(100%, 260px);
 }
 
+.setup-password-button:not(:disabled):hover {
+  filter: brightness(0.95);
+}
+
+.setup-password-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .password-rules {
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
   display: grid;
-  gap: 8px;
-  margin: -6px 0 14px;
+  gap: 10px;
+  padding: 16px;
 }
 
 .password-rule {
-  align-items: center;
   color: var(--color-text-light);
-  display: flex;
   font-size: 13px;
   font-weight: 650;
-  gap: 8px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
-.password-rule span:first-child {
+.password-rule-icon {
   align-items: center;
   border-radius: 999px;
   display: inline-flex;
-  font-size: 12px;
   height: 18px;
   justify-content: center;
+  width: 18px;
+}
+
+.password-rule-icon svg {
+  height: 18px;
   width: 18px;
 }
 
@@ -826,7 +840,6 @@ a:focus-visible {
   color: var(--color-text-light);
   font-size: 13px;
   font-weight: 650;
-  margin: -6px 0 14px;
 }
 
 .dashboard-page {
