@@ -92,9 +92,9 @@ export default function SetupPasswordPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="setup-password-page mx-auto">
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Set your password</h1>
+        <h1 className="setup-password-title font-bold text-gray-900 mb-2">Set your password</h1>
         <p className="text-gray-600">Create a password for your SafeHome account.</p>
       </div>
 
@@ -123,7 +123,7 @@ export default function SetupPasswordPage() {
               onChange={(event) => setPassword(event.target.value)}
               required
             />
-            <div className="password-rules mt-4 mb-7 p-4 bg-gray-50 rounded-lg" aria-live="polite">
+            <div className="password-rules mt-4 mb-8 p-4 bg-gray-50 rounded-lg" aria-live="polite">
               {passwordRules.map((rule) => (
                 <div
                   key={rule.label}
@@ -144,7 +144,7 @@ export default function SetupPasswordPage() {
                 </div>
               ))}
             </div>
-            <div className="mt-2">
+            <div className="mt-3">
               <Input
                 label="Confirm password"
                 type="password"
@@ -154,12 +154,12 @@ export default function SetupPasswordPage() {
               />
             </div>
             {showPasswordMismatch && (
-              <p className="password-match-message mt-2 mb-5 px-2">Passwords do not match yet.</p>
+              <p className="password-match-message mt-3 mb-6 px-2">Passwords do not match yet.</p>
             )}
             <Button
               type="submit"
               disabled={loading || !token || !passwordMeetsRules || !passwordsMatch}
-              className="setup-password-button mt-6 transition-all duration-200"
+              className="setup-password-button mt-8 transition-all duration-200"
             >
               {loading ? 'Setting password...' : 'Set Password'}
             </Button>

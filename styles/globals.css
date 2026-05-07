@@ -785,6 +785,15 @@ a:focus-visible {
   min-width: 140px;
 }
 
+.setup-password-page {
+  width: min(100% - 32px, 600px);
+}
+
+.setup-password-title {
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.04;
+}
+
 .setup-password-button {
   display: flex;
   margin-left: auto;
@@ -1155,5 +1164,9 @@ a:focus-visible {
 
   .progress-step {
     font-size: 11px;
+  }
+
+  .setup-password-page {
+    width: min(100% - 28px, 600px);
   }
 }
