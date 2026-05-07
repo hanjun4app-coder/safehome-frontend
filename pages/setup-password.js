@@ -22,11 +22,12 @@ export default function SetupPasswordPage() {
   const passwordMeetsRules = passwordRules.every((rule) => rule.valid)
   const passwordsMatch = Boolean(confirmPassword) && password === confirmPassword
   const showPasswordMismatch = Boolean(confirmPassword) && password !== confirmPassword
+  const missingToken = router.isReady && !token
 
   useEffect(() => {
     if (!router.isReady) return
     if (!token) {
-      setError('This password setup link is missing a token.')
+      setError('')
       setChecking(false)
       return
     }
@@ -107,6 +108,19 @@ export default function SetupPasswordPage() {
       <Card>
         {checking ? (
           <p className="text-gray-600">Checking your setup link...</p>
+        ) : missingToken ? (
+          <div className="text-center">
+            <p className="text-gray-600 mb-6">
+              This setup link is missing required information. You can request a fresh setup email and continue from there.
+            </p>
+            <Button
+              type="button"
+              onClick={() => router.push('/onboarding')}
+              className="setup-password-button transition-all duration-200"
+            >
+              Resend setup email
+            </Button>
+          </div>
         ) : (
           <form onSubmit={handleSubmit}>
             {email && (

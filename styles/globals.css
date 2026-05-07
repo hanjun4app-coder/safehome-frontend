@@ -318,6 +318,7 @@ p {
 }
 
 .hero-visual {
+  background: linear-gradient(135deg, #eef3f7, #dbe7ef);
   min-height: 560px;
   overflow: hidden;
   position: relative;

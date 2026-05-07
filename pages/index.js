@@ -4,25 +4,15 @@ import Button from '../components/Button'
 
 export default function LandingPage() {
   const heroVideoRef = useRef(null)
-  const [shouldLoadHeroVideo, setShouldLoadHeroVideo] = useState(false)
   const [isHeroVideoMuted, setIsHeroVideoMuted] = useState(true)
 
   useEffect(() => {
-    const connection =
-      navigator.connection || navigator.mozConnection || navigator.webkitConnection
-    const slowConnection =
-      connection?.saveData || ['slow-2g', '2g'].includes(connection?.effectiveType)
+    if (!heroVideoRef.current) return
 
-    if (!slowConnection) {
-      setShouldLoadHeroVideo(true)
-    }
+    heroVideoRef.current.muted = true
+    setIsHeroVideoMuted(true)
+    heroVideoRef.current.play().catch(() => {})
   }, [])
-
-  useEffect(() => {
-    if (shouldLoadHeroVideo && heroVideoRef.current) {
-      heroVideoRef.current.play().catch(() => {})
-    }
-  }, [shouldLoadHeroVideo])
 
   const handleToggleHeroVideoSound = () => {
     if (!heroVideoRef.current) return
@@ -62,44 +52,39 @@ export default function LandingPage() {
             <video
               ref={heroVideoRef}
               className="hero-video"
-              poster="/images/hero-elderly-reading.jpg"
-              preload="none"
-              autoPlay={shouldLoadHeroVideo}
+              preload="metadata"
+              autoPlay
               muted={isHeroVideoMuted}
               loop
               playsInline
               aria-label="SafeHome privacy-first home safety monitoring"
             >
-              {shouldLoadHeroVideo && (
-                <source src="/videos/safehome-hero.mp4" type="video/mp4" />
-              )}
+              <source src="/videos/safehome-hero.mp4" type="video/mp4" />
             </video>
-            {shouldLoadHeroVideo && (
-              <button
-                type="button"
-                className="hero-video-sound-toggle"
-                onClick={handleToggleHeroVideoSound}
-                aria-label={isHeroVideoMuted ? 'Turn hero video sound on' : 'Mute hero video'}
-                aria-pressed={!isHeroVideoMuted}
-              >
-                <span aria-hidden="true" className="hero-video-sound-icon">
-                  {isHeroVideoMuted ? (
-                    <svg viewBox="0 0 24 24" focusable="false">
-                      <path d="M4 10v4h4l5 4V6l-5 4H4Z" />
-                      <path d="m18.5 9.5-4 5" />
-                      <path d="m14.5 9.5 4 5" />
-                    </svg>
-                  ) : (
-                    <svg viewBox="0 0 24 24" focusable="false">
-                      <path d="M4 10v4h4l5 4V6l-5 4H4Z" />
-                      <path d="M16 9.5c.8.7 1.25 1.55 1.25 2.5S16.8 13.8 16 14.5" />
-                      <path d="M18.5 7c1.45 1.35 2.25 3.05 2.25 5s-.8 3.65-2.25 5" />
-                    </svg>
-                  )}
-                </span>
-                <span>{isHeroVideoMuted ? 'Sound on' : 'Mute'}</span>
-              </button>
-            )}
+            <button
+              type="button"
+              className="hero-video-sound-toggle"
+              onClick={handleToggleHeroVideoSound}
+              aria-label={isHeroVideoMuted ? 'Turn hero video sound on' : 'Mute hero video'}
+              aria-pressed={!isHeroVideoMuted}
+            >
+              <span aria-hidden="true" className="hero-video-sound-icon">
+                {isHeroVideoMuted ? (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M4 10v4h4l5 4V6l-5 4H4Z" />
+                    <path d="m18.5 9.5-4 5" />
+                    <path d="m14.5 9.5 4 5" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M4 10v4h4l5 4V6l-5 4H4Z" />
+                    <path d="M16 9.5c.8.7 1.25 1.55 1.25 2.5S16.8 13.8 16 14.5" />
+                    <path d="M18.5 7c1.45 1.35 2.25 3.05 2.25 5s-.8 3.65-2.25 5" />
+                  </svg>
+                )}
+              </span>
+              <span>{isHeroVideoMuted ? 'Sound on' : 'Mute'}</span>
+            </button>
           </div>
         </div>
       </section>
