@@ -335,10 +335,13 @@ p {
   width: 100%;
 }
 
-.hero-video-unmute {
+.hero-video-sound-toggle {
+  align-items: center;
   position: absolute;
   right: 18px;
   bottom: 18px;
+  display: inline-flex;
+  gap: 8px;
   border: 1px solid rgba(255, 255, 255, 0.38);
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.56);
@@ -353,11 +356,34 @@ p {
   transition: opacity 180ms ease, background-color 180ms ease, transform 180ms ease;
 }
 
-.hero-video-unmute:hover,
-.hero-video-unmute:focus-visible {
+.hero-video-sound-toggle:hover,
+.hero-video-sound-toggle:focus-visible {
   background: rgba(15, 23, 42, 0.72);
   opacity: 1;
   transform: translateY(-1px);
+}
+
+.hero-video-sound-icon {
+  align-items: center;
+  display: inline-flex;
+  height: 17px;
+  justify-content: center;
+  width: 17px;
+}
+
+.hero-video-sound-icon svg {
+  display: block;
+  height: 17px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  width: 17px;
+}
+
+.hero-video-sound-icon svg path:first-child {
+  fill: currentColor;
+  stroke: none;
 }
 
 .feature-grid {
