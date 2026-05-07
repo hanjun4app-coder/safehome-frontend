@@ -792,6 +792,43 @@ a:focus-visible {
   width: min(100%, 260px);
 }
 
+.password-rules {
+  display: grid;
+  gap: 8px;
+  margin: -6px 0 14px;
+}
+
+.password-rule {
+  align-items: center;
+  color: var(--color-text-light);
+  display: flex;
+  font-size: 13px;
+  font-weight: 650;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.password-rule span:first-child {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 12px;
+  height: 18px;
+  justify-content: center;
+  width: 18px;
+}
+
+.password-rule.is-valid {
+  color: #047857;
+}
+
+.password-match-message {
+  color: var(--color-text-light);
+  font-size: 13px;
+  font-weight: 650;
+  margin: -6px 0 14px;
+}
+
 .dashboard-page {
   width: min(100% - 40px, 1080px);
   margin: 0 auto;

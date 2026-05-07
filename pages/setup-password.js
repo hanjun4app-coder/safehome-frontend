@@ -14,6 +14,14 @@ export default function SetupPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [checking, setChecking] = useState(true)
   const [error, setError] = useState('')
+  const passwordRules = [
+    { label: 'At least 8 characters', valid: password.length >= 8 },
+    { label: 'At least one letter', valid: /[A-Za-z]/.test(password) },
+    { label: 'At least one number', valid: /\d/.test(password) },
+  ]
+  const passwordMeetsRules = passwordRules.every((rule) => rule.valid)
+  const passwordsMatch = Boolean(confirmPassword) && password === confirmPassword
+  const showPasswordMismatch = Boolean(confirmPassword) && password !== confirmPassword
 
   useEffect(() => {
     if (!router.isReady) return
@@ -115,6 +123,17 @@ export default function SetupPasswordPage() {
               onChange={(event) => setPassword(event.target.value)}
               required
             />
+            <div className="password-rules" aria-live="polite">
+              {passwordRules.map((rule) => (
+                <div
+                  key={rule.label}
+                  className={`password-rule ${rule.valid ? 'is-valid' : ''}`}
+                >
+                  <span aria-hidden="true">{rule.valid ? '✓' : '○'}</span>
+                  <span>{rule.label}</span>
+                </div>
+              ))}
+            </div>
             <Input
               label="Confirm password"
               type="password"
@@ -122,7 +141,14 @@ export default function SetupPasswordPage() {
               onChange={(event) => setConfirmPassword(event.target.value)}
               required
             />
-            <Button type="submit" disabled={loading || !token} className="setup-password-button">
+            {showPasswordMismatch && (
+              <p className="password-match-message">Passwords do not match yet.</p>
+            )}
+            <Button
+              type="submit"
+              disabled={loading || !token || !passwordMeetsRules || !passwordsMatch}
+              className="setup-password-button"
+            >
               {loading ? 'Setting password...' : 'Set Password'}
             </Button>
           </form>
