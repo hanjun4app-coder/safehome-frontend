@@ -1,7 +1,28 @@
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Button from '../components/Button'
 
 export default function LandingPage() {
+  const heroVideoRef = useRef(null)
+  const [shouldLoadHeroVideo, setShouldLoadHeroVideo] = useState(false)
+
+  useEffect(() => {
+    const connection =
+      navigator.connection || navigator.mozConnection || navigator.webkitConnection
+    const slowConnection =
+      connection?.saveData || ['slow-2g', '2g'].includes(connection?.effectiveType)
+
+    if (!slowConnection) {
+      setShouldLoadHeroVideo(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (shouldLoadHeroVideo && heroVideoRef.current) {
+      heroVideoRef.current.play().catch(() => {})
+    }
+  }, [shouldLoadHeroVideo])
+
   return (
     <div>
       <section className="hero-section">
@@ -28,10 +49,21 @@ export default function LandingPage() {
           </div>
 
           <div className="hero-visual">
-            <img
-              src="/images/hero-elderly-reading.jpg"
-              alt="Elderly person reading at home safely"
-            />
+            <video
+              ref={heroVideoRef}
+              className="hero-video"
+              poster="/images/hero-elderly-reading.jpg"
+              preload="none"
+              autoPlay={shouldLoadHeroVideo}
+              muted
+              loop
+              playsInline
+              aria-label="SafeHome privacy-first home safety monitoring"
+            >
+              {shouldLoadHeroVideo && (
+                <source src="/videos/safehome-hero.mp4" type="video/mp4" />
+              )}
+            </video>
             <div className="hero-visual-overlay"></div>
             <div className="hero-status-card">
               <div className="hero-status-row">

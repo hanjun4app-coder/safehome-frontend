@@ -325,7 +325,8 @@ p {
   box-shadow: var(--shadow-lg);
 }
 
-.hero-visual img {
+.hero-visual img,
+.hero-visual video {
   display: block;
   height: 100%;
   min-height: 560px;
@@ -1093,7 +1094,8 @@ a:focus-visible {
     min-height: 420px;
   }
 
-  .hero-visual img {
+  .hero-visual img,
+  .hero-visual video {
     min-height: 420px;
   }
 
