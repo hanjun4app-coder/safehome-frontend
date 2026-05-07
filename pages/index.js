@@ -7,11 +7,48 @@ export default function LandingPage() {
   const [isHeroVideoMuted, setIsHeroVideoMuted] = useState(true)
 
   useEffect(() => {
-    if (!heroVideoRef.current) return
+    const attemptMutedPlayback = () => {
+      const video = heroVideoRef.current
+      if (!video) return
 
-    heroVideoRef.current.muted = true
-    setIsHeroVideoMuted(true)
-    heroVideoRef.current.play().catch(() => {})
+      video.muted = true
+      video.defaultMuted = true
+      setIsHeroVideoMuted(true)
+      video.load()
+      video.play().catch(() => {})
+    }
+
+    const attemptPlaybackWithoutReload = () => {
+      const video = heroVideoRef.current
+      if (!video) return
+
+      video.muted = true
+      video.defaultMuted = true
+      setIsHeroVideoMuted(true)
+      video.play().catch(() => {})
+    }
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        attemptPlaybackWithoutReload()
+      }
+    }
+
+    attemptMutedPlayback()
+    const firstRetry = window.setTimeout(attemptPlaybackWithoutReload, 300)
+    const secondRetry = window.setTimeout(attemptPlaybackWithoutReload, 1000)
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('pageshow', attemptPlaybackWithoutReload)
+    window.addEventListener('touchstart', attemptPlaybackWithoutReload, { once: true })
+
+    return () => {
+      window.clearTimeout(firstRetry)
+      window.clearTimeout(secondRetry)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('pageshow', attemptPlaybackWithoutReload)
+      window.removeEventListener('touchstart', attemptPlaybackWithoutReload)
+    }
   }, [])
 
   const handleToggleHeroVideoSound = () => {
@@ -52,8 +89,9 @@ export default function LandingPage() {
             <video
               ref={heroVideoRef}
               className="hero-video"
-              preload="metadata"
+              preload="auto"
               autoPlay
+              defaultMuted
               muted={isHeroVideoMuted}
               loop
               playsInline
