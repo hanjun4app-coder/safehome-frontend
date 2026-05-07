@@ -64,14 +64,6 @@ export default function LandingPage() {
                 <source src="/videos/safehome-hero.mp4" type="video/mp4" />
               )}
             </video>
-            <div className="hero-visual-overlay"></div>
-            <div className="hero-status-card">
-              <div className="hero-status-row">
-                <strong>Home status</strong>
-                <span className="status-pill">All normal</span>
-              </div>
-              <p>Regular motion detected in the living room. No action needed.</p>
-            </div>
           </div>
         </div>
       </section>
