@@ -71,7 +71,7 @@ export default function LandingPage() {
       <section className="hero-section">
         <div className="hero-container">
           <div className="hero-copy">
-            <p className="eyebrow">Private home safety monitoring</p>
+            <p className="eyebrow">Calm technology for connected families.</p>
             <h1>Know your parent is safe, even when you're not there.</h1>
             <p>
               SafeHome quietly notices unusual activity at home and lets you know when something may need attention, without cameras or wearables.
@@ -101,7 +101,7 @@ export default function LandingPage() {
               muted={isHeroVideoMuted}
               loop
               playsInline
-              aria-label="SafeHome privacy-first home safety monitoring"
+              aria-label="SafeHome privacy-first family reassurance video"
             >
               <source src="/videos/safehome-hero.mp4" type="video/mp4" />
             </video>
@@ -144,7 +144,7 @@ export default function LandingPage() {
             <div className="card feature-card">
               <span className="feature-icon">01</span>
               <h3>No cameras</h3>
-              <p>We monitor motion patterns, not people. Privacy and independence come first.</p>
+              <p>SafeHome observes patterns, not private moments. Privacy and independence come first.</p>
             </div>
 
             <div className="card feature-card">
@@ -173,8 +173,8 @@ export default function LandingPage() {
             <div className="card step-card">
               <span className="step-number is-active">1</span>
               <div>
-                <h3>Install sensors</h3>
-                <p>Small motion sensors in bedroom, bathroom, and living room. Takes about 30-60 minutes.</p>
+                <h3>Set up the home</h3>
+                <p>Small, privacy-first devices are placed in key rooms. Setup takes about 30-60 minutes.</p>
               </div>
             </div>
 
@@ -189,8 +189,8 @@ export default function LandingPage() {
             <div className="card step-card">
               <span className="step-number is-active">3</span>
               <div>
-                <h3>You get alerts when needed</h3>
-                <p>Receive alerts only for real concerns, like prolonged inactivity or unusual patterns.</p>
+                <h3>You get important updates</h3>
+                <p>Receive calm updates only when something may need attention.</p>
               </div>
             </div>
           </div>
