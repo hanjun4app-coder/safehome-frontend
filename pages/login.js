@@ -31,7 +31,14 @@ export default function LoginPage() {
         return
       }
 
-      localStorage.setItem('token', data.token)
+      const authToken = data.token || data.access_token
+      if (!authToken) {
+        setError('Unable to sign in. Please try again.')
+        return
+      }
+
+      localStorage.setItem('token', authToken)
+      localStorage.setItem('access_token', authToken)
       
       // Redirect to dashboard if family, admin if installer
       if (data.role === 'admin') {
