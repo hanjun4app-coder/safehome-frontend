@@ -6,23 +6,27 @@ export default function PreInstallGuidePage() {
     <div className="bg-gradient-to-b from-blue-50 via-white to-gray-50 min-h-screen">
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px' }}>
         {/* Header Section */}
-        <section className="max-w-2xl mx-auto px-6 py-16 text-center">
-          <Link href="/" className="text-blue-600 hover:text-blue-700 text-sm font-semibold mb-8 inline-block">
-            Back to home
-          </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Before installation
-          </h1>
-          <p className="text-xl text-gray-600 mb-3">
-            A quick checklist to make sure your home is ready. Takes 5 minutes to prepare.
-          </p>
-          <p className="text-gray-600">
-            We'll handle everything — this just helps things go faster.
-          </p>
+        <section className="preinstall-hero max-w-2xl mx-auto px-6 py-16 text-center">
+          <div className="preinstall-back-link">
+            <Link href="/" className="text-blue-600 hover:text-blue-700 text-sm font-semibold inline-block">
+              Back to home
+            </Link>
+          </div>
+          <div className="preinstall-hero-copy">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+              Before installation
+            </h1>
+            <p className="text-xl text-gray-600">
+              A quick checklist to make sure your home is ready. Takes 5 minutes to prepare.
+            </p>
+            <p className="text-gray-600">
+              We'll handle everything — this just helps things go faster.
+            </p>
+          </div>
         </section>
 
         {/* Main Content */}
-        <section className="max-w-2xl mx-auto px-6 py-12">
+        <section className="preinstall-main max-w-2xl mx-auto px-6 py-12">
         {/* What You Need To Do */}
         <div className="bg-white rounded-xl border border-gray-200 p-8 mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Please prepare these items</h2>
