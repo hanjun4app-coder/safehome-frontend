@@ -24,16 +24,16 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       })
-      const data = await readApiJson(response, 'Unable to sign in. Please try again.')
+      const data = await readApiJson(response, "We're having trouble signing you in right now. Please try again in a moment.")
 
       if (!response.ok) {
-        setError(data.detail || 'Invalid email or password')
+        setError('Please check your email and password, then try again.')
         return
       }
 
       const authToken = data.token || data.access_token
       if (!authToken) {
-        setError('Unable to sign in. Please try again.')
+        setError("We're having trouble opening your dashboard right now. Please try again in a moment.")
         return
       }
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
         router.push('/dashboard')
       }
     } catch (err) {
-      setError('Unable to sign in. Please try again.')
+      setError("We're having trouble signing you in right now. Please try again in a moment.")
       console.error(err)
     } finally {
       setLoading(false)
@@ -58,7 +58,7 @@ export default function LoginPage() {
     e.preventDefault()
     setError('')
     if (!email) {
-      setError('Please enter your email address')
+      setError('Please enter your email address so we can send the reset link.')
       return
     }
 
@@ -69,17 +69,17 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       })
-      const data = await readApiJson(response, 'Unable to send reset email. Please try again.')
+      const data = await readApiJson(response, "We're having trouble sending the reset email right now. Please try again in a moment.")
 
       if (!response.ok) {
-        throw new Error(data.detail || 'Failed to send reset email')
+        throw new Error("We're having trouble sending the reset email right now. Please try again in a moment.")
       }
 
       setShowForgotPassword(false)
       setError('') // Clear error
-      alert('Password reset link sent to your email')
+      alert('If an account is available for this email, a reset link will arrive shortly.')
     } catch (err) {
-      setError('Unable to send reset email. Please try again.')
+      setError("We're having trouble sending the reset email right now. Please try again in a moment.")
     } finally {
       setLoading(false)
     }
@@ -118,7 +118,7 @@ export default function LoginPage() {
               required
             />
             <Button type="submit" disabled={loading} className="w-full">
-              {loading ? 'Signing in...' : 'Sign in'}
+              {loading ? 'Preparing your family dashboard...' : 'Sign in'}
             </Button>
           </form>
 
@@ -146,7 +146,7 @@ export default function LoginPage() {
               required
             />
             <Button type="submit" disabled={loading} className="w-full">
-              {loading ? 'Sending...' : 'Send reset link'}
+              {loading ? 'Sending a secure reset link...' : 'Send reset link'}
             </Button>
           </form>
 

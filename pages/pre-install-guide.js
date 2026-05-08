@@ -38,7 +38,7 @@ export default function PreInstallGuidePage() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Stable WiFi (2.4GHz preferred)</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  The sensors communicate with our servers via WiFi. Make sure you have stable WiFi coverage in the rooms where sensors will be installed (typically bedroom, bathroom, living room).
+                  SafeHome needs steady WiFi in the rooms where devices will be placed, typically the bedroom, bathroom, and living room.
                 </p>
                 <div className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded">
                   You'll need your WiFi password during installation
@@ -56,10 +56,10 @@ export default function PreInstallGuidePage() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Access to bedroom, bathroom & living room</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Our installer needs to place sensors in key rooms to monitor daily activity. All rooms should be accessible and tidy.
+                  Our installer will place small devices in key rooms so SafeHome can understand daily routines. All rooms should be accessible and tidy.
                 </p>
                 <div className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded">
-                  We don't install in private areas. Sensors detect motion, not activity details.
+                  We don't install cameras or recording devices. SafeHome observes patterns, not private moments.
                 </div>
               </div>
             </div>
@@ -130,8 +130,8 @@ export default function PreInstallGuidePage() {
                 <div className="w-0.5 h-12 bg-blue-300"></div>
               </div>
               <div className="pb-4">
-                <h3 className="font-semibold text-gray-900 mb-1">Sensor Placement</h3>
-                <p className="text-gray-600 text-sm">15-20 min | Sensors installed in key rooms</p>
+                <h3 className="font-semibold text-gray-900 mb-1">Device Placement</h3>
+                <p className="text-gray-600 text-sm">15-20 min | Small devices placed in key rooms</p>
               </div>
             </div>
 
@@ -145,7 +145,7 @@ export default function PreInstallGuidePage() {
               </div>
               <div className="pb-4">
                 <h3 className="font-semibold text-gray-900 mb-1">WiFi Setup</h3>
-                <p className="text-gray-600 text-sm">5-10 min | Connect sensors to your WiFi</p>
+                <p className="text-gray-600 text-sm">5-10 min | Connect SafeHome to your WiFi</p>
               </div>
             </div>
 
@@ -158,7 +158,7 @@ export default function PreInstallGuidePage() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">Testing & Walkthrough</h3>
-                <p className="text-gray-600 text-sm">5-10 min | Test sensors, explain dashboard</p>
+                <p className="text-gray-600 text-sm">5-10 min | Confirm everything works and walk through your dashboard</p>
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function PreInstallGuidePage() {
                 What happens after installation?
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                You'll get a confirmation email with your login details. The system takes about 7 days to learn daily patterns. During this time, you may see more alerts as the AI adapts to your loved one's routine.
+                You'll get a confirmation email with your login details. SafeHome takes about 7 days to learn daily patterns. During this time, you may see a few extra updates as it gets familiar with your loved one's routine.
               </p>
             </div>
 

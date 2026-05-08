@@ -37,16 +37,16 @@ export default function SetupPasswordPage() {
       setError('')
       try {
         const response = await fetch(`${getApiUrl()}/api/auth/verify-setup-token?token=${encodeURIComponent(token)}`)
-        const data = await readApiJson(response, 'This password setup link is invalid or expired.')
+        const data = await readApiJson(response, 'This setup link is no longer active. Please request a fresh email to continue.')
         if (!response.ok) {
-          throw new Error(data.detail || 'Invalid setup link')
+          throw new Error(data.detail || 'This setup link is no longer active. Please request a fresh email to continue.')
         }
         setEmail(data.email || '')
         if (data.password_set) {
           setError('This account already has a password. Please sign in.')
         }
       } catch (err) {
-        setError(err.message || 'This password setup link is invalid or expired.')
+        setError(err.message || 'This setup link is no longer active. Please request a fresh email to continue.')
       } finally {
         setChecking(false)
       }
@@ -60,12 +60,12 @@ export default function SetupPasswordPage() {
     setError('')
 
     if (password.length < 8) {
-      setError('Password must be at least 8 characters.')
+      setError('Please choose a password with at least 8 characters.')
       return
     }
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match.')
+      setError('Please make sure both passwords match.')
       return
     }
 
@@ -80,13 +80,13 @@ export default function SetupPasswordPage() {
           password_confirm: confirmPassword,
         }),
       })
-      const data = await readApiJson(response, 'Unable to set password. Please try again.')
+      const data = await readApiJson(response, "We're having trouble setting your password right now. Please try again in a moment.")
       if (!response.ok) {
-        throw new Error(data.detail || 'Unable to set password')
+        throw new Error(data.detail || "We're having trouble setting your password right now. Please try again in a moment.")
       }
       router.push('/login')
     } catch (err) {
-      setError(err.message || 'Unable to set password. Please try again.')
+      setError(err.message || "We're having trouble setting your password right now. Please try again in a moment.")
     } finally {
       setLoading(false)
     }
@@ -107,7 +107,7 @@ export default function SetupPasswordPage() {
 
       <Card>
         {checking ? (
-          <p className="text-gray-600">Checking your setup link...</p>
+          <p className="text-gray-600">Preparing your secure setup...</p>
         ) : missingToken ? (
           <div className="text-center">
             <p className="text-gray-600 mb-6">
@@ -175,7 +175,7 @@ export default function SetupPasswordPage() {
               disabled={loading || !token || !passwordMeetsRules || !passwordsMatch}
               className="setup-password-button mt-8 transition-all duration-200"
             >
-              {loading ? 'Setting password...' : 'Set Password'}
+              {loading ? 'Saving your password securely...' : 'Set Password'}
             </Button>
           </form>
         )}

@@ -71,38 +71,38 @@ export default function OnboardingPage() {
     setError('')
     if (currentStep === 1) {
       if (!formData.elderName || !formData.elderAge || !formData.livesAlone || !formData.mobilityLevel) {
-        setError('Please fill in all fields')
+        setError('Please complete the required details so we can set things up carefully.')
         return false
       }
     } else if (currentStep === 2) {
       if (!formData.wakeUpTime || !formData.sleepTime || !formData.showerTime || !formData.bathroomDuration) {
-        setError('Please fill in all fields')
+        setError('Please complete the routine details so SafeHome can start with helpful context.')
         return false
       }
     } else if (currentStep === 3) {
       if (!formData.familyEmail || !formData.familyPhone || !formData.address) {
-        setError('Please fill in all fields')
+        setError('Please complete the contact details so we know how to reach your family.')
         return false
       }
       if (!formData.familyEmail.includes('@')) {
-        setError('Please enter a valid email address')
+        setError('Please enter a valid email address for your SafeHome account.')
         return false
       }
     } else if (currentStep === 4) {
       if (!formData.emergencyContactName || !formData.emergencyContactPhone) {
-        setError('Please provide emergency contact information')
+        setError('Please add an emergency contact so your setup is ready for important moments.')
         return false
       }
       if (!formData.mainSafetyConcern || formData.mainSafetyConcern.length === 0) {
-        setError('Please select at least one main safety concern')
+        setError('Please choose at least one concern so alerts can be focused on what matters most.')
         return false
       }
       if (!formData.preferredDate || !formData.preferredTimeWindow) {
-        setError('Please select a preferred date and time window')
+        setError('Please choose a preferred installation date and time window.')
         return false
       }
       if (!agreedToTerms) {
-        setError('Please agree to the Privacy Policy and Terms of Service')
+        setError('Please review and agree to the Privacy Policy and Terms of Service to continue.')
         return false
       }
     }
@@ -157,23 +157,23 @@ export default function OnboardingPage() {
         }),
       })
 
-      const data = await readApiJson(response, 'Unable to submit your information. Please try again.')
+      const data = await readApiJson(response, "We're having trouble saving your setup details right now. Please try again in a moment.")
       if (!response.ok) {
         if (response.status === 409) {
-          setError('This email has already been used. Please sign in or contact support@linkrytech.com.')
+          setError('This email is already connected to SafeHome. Please sign in or contact support@linkrytech.com.')
           return
         }
-        setError(data.detail || data.message || 'Unable to submit your information. Please try again.')
+        setError(data.detail || data.message || "We're having trouble saving your setup details right now. Please try again in a moment.")
         return
       }
 
       if (data.success) {
         router.push('/onboarding/done')
       } else {
-        setError(data.message || 'Failed to submit form')
+        setError(data.message || "We're having trouble saving your setup details right now. Please try again in a moment.")
       }
     } catch (err) {
-      setError('Unable to submit your information. Please try again.')
+      setError("We're having trouble saving your setup details right now. Please try again in a moment.")
       console.error(err)
     } finally {
       setLoading(false)
@@ -385,7 +385,7 @@ export default function OnboardingPage() {
               {/* Trust-building copy - Optimization 3 */}
               <div className="alert alert-info mb-8">
                 <p className="text-sm">
-                  <strong>Why these questions:</strong> These help us reduce false alerts and better understand your loved one's routine. Everything you share stays private and secure.
+                  <strong>Why these questions:</strong> These help SafeHome understand daily routines with more care. Everything you share stays private and secure.
                 </p>
               </div>
 
@@ -441,7 +441,7 @@ export default function OnboardingPage() {
                   {/* User control/agency copy - Optimization 5 */}
                   <div className="alert alert-info">
                     <p className="text-sm text-text-light">
-                      We'll prioritize alerts based on what matters most to you and customize them to your family's needs.
+                      We'll focus updates around what matters most to your family.
                     </p>
                   </div>
                 </div>
@@ -598,7 +598,7 @@ export default function OnboardingPage() {
           )}
           {step === 4 && (
             <Button type="submit" disabled={loading} style={{ opacity: loading ? 0.7 : 1 }}>
-              {loading ? 'Submitting...' : 'Complete Setup'}
+              {loading ? 'Saving your SafeHome setup...' : 'Complete Setup'}
             </Button>
           )}
         </div>

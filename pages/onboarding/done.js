@@ -26,26 +26,26 @@ export default function ConfirmationPage() {
 
         {/* Learning Period - Optimization 4 */}
         <div className="card card-lg mb-16" style={{ backgroundColor: 'rgba(245, 158, 11, 0.05)', borderColor: 'rgba(245, 158, 11, 0.3)' }}>
-          <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: 'var(--font-serif)' }}>About Your Learning Period</h2>
+          <h2 className="text-2xl font-bold text-text mb-6" style={{ fontFamily: 'var(--font-serif)' }}>As SafeHome Learns</h2>
           <p className="text-text-light mb-6">
-            After installation, the system will take <strong>about 7 days</strong> to learn your loved one's daily patterns and routines. During this time:
+            After installation, SafeHome will take <strong>about 7 days</strong> to understand daily patterns and routines. During this time:
           </p>
           <ul className="space-y-4 text-text-light">
             <li className="flex gap-4">
               <span className="text-warning font-bold text-lg flex-shrink-0 mt-0">•</span>
-              <span>You may see more alerts than usual as the system adjusts to what's normal</span>
+              <span>You may see a few extra updates while SafeHome gets familiar with daily routines</span>
             </li>
             <li className="flex gap-4">
               <span className="text-warning font-bold text-lg flex-shrink-0 mt-0">•</span>
-              <span>Feedback is valuable—let us know if an alert isn't relevant to you</span>
+              <span>Your feedback helps us keep updates relevant and calm</span>
             </li>
             <li className="flex gap-4">
               <span className="text-warning font-bold text-lg flex-shrink-0 mt-0">•</span>
-              <span>After the learning period, alerts become smarter and more personalized</span>
+              <span>As patterns become clearer, important updates become more personalized</span>
             </li>
             <li className="flex gap-4">
               <span className="text-warning font-bold text-lg flex-shrink-0 mt-0">•</span>
-              <span>You're in control—you can adjust sensitivity and alert types anytime</span>
+              <span>You're in control and can adjust update preferences anytime</span>
             </li>
           </ul>
         </div>
@@ -105,7 +105,7 @@ export default function ConfirmationPage() {
               <div>
                 <h3 className="font-semibold text-text mb-2" style={{ fontFamily: 'var(--font-serif)' }}>You'll get access</h3>
                 <p className="text-text-light">
-                  Once installation is complete and verified, we'll send you a password setup link so you can log in and monitor your loved one.
+                  Once installation is complete and verified, we'll send you a password setup link so you can check in with peace of mind.
                 </p>
               </div>
             </div>
